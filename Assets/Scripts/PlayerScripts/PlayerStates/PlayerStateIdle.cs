@@ -6,14 +6,12 @@ public class PlayerStateIdle<T> : State<T>
 {
     FSM<T> _fsm;
     T _inputToMove;
-    T _inputToSpin;
     IMove _move;
 
-    public PlayerStateIdle(FSM<T> fsm, T inputToMove, T inputToSpin, IMove move)
+    public PlayerStateIdle(FSM<T> fsm, T inputToMove, IMove move)
     {
         _fsm = fsm;
         _inputToMove = inputToMove;
-        _inputToSpin = inputToSpin;
         _move = move;
     }
 
@@ -31,10 +29,6 @@ public class PlayerStateIdle<T> : State<T>
         if (h != 0 || v != 0)
         {
             _fsm.Transition(_inputToMove);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _fsm.Transition(_inputToSpin);
         }
     }
 }

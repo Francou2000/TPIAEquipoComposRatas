@@ -23,10 +23,6 @@ public class Entity : MonoBehaviour, IMove
     }
     public void Look(Transform target)
     {
-        //A->B
-        //B-A
-        //A: Yo
-        //B: Target
         Vector3 dir = target.position - transform.position;
         Look(dir);
     }

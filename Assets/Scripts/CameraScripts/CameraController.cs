@@ -9,14 +9,12 @@ public class CameraController : MonoBehaviour
     public Transform target;
     LineOfSight _los;
     IAlert _alert;
-    ISpin _spin;
     FSM<StateEnum> _fsm;
     ITreeNode _root;
     private void Awake()
     {
         _los = GetComponent<LineOfSight>();
         _alert = GetComponent<IAlert>();
-        _spin = target.GetComponent<ISpin>();
     }
     private void Start()
     {
@@ -46,7 +44,7 @@ public class CameraController : MonoBehaviour
     }
     public bool InView()
     {
-        return (_spin == null || _spin.IsDetectable) &&
+        return
             _los.CheckRange(target) &&
             _los.CheckAngle(target) &&
             _los.CheckView(target);

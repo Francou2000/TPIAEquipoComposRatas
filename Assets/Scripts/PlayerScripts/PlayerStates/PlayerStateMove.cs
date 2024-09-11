@@ -27,10 +27,5 @@ public class PlayerStateMove : State<StateEnum>
             _move.Move(dir.normalized);
             _move.Look(dir);
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _fsm.Transition(StateEnum.Spin);
-        }
     }
 }
