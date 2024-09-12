@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     IMove _move;
 
     FSM<StateEnum> _fsm;
+
     void Start()
     {
         _move = GetComponent<IMove>();
