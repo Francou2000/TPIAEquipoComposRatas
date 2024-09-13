@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
         _move = GetComponent<IMove>();
         InitializedFSM();
     }
+
     void InitializedFSM()
     {
         _fsm = new FSM<StateEnum>();
@@ -25,14 +26,17 @@ public class PlayerController : MonoBehaviour
 
         _fsm.SetInitial(idle);
     }
+
     void Update()
     {
         _fsm.OnUpdate();
     }
+
     private void FixedUpdate()
     {
         _fsm.OnFixedUpdate();
     }
+
     private void LateUpdate()
     {
         _fsm.OnLateUpdate();
