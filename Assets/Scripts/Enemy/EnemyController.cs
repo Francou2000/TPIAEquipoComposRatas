@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
         var flee = new Flee(transform, target.transform);
         var pursuit = new Pursuit(transform, target, timePrediction);
         var evade = new Evade(transform, target, timePrediction);
-        _steering = seek;
+        _steering = pursuit;
     }
     public void ChangeSteering(ISteering steering)
     {
