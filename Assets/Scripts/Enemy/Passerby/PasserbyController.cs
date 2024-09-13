@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class PasserbyController : MonoBehaviour
 {
     public Rigidbody target;
     public LineOfSight los;
@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
         var flee = new Flee(transform, target.transform);
         var pursuit = new Pursuit(transform, target, timePrediction);
         var evade = new Evade(transform, target, timePrediction);
-        _steering = pursuit;
+        _steering = evade;
     }
     public void ChangeSteering(ISteering steering)
     {
@@ -34,7 +34,7 @@ public class EnemyController : MonoBehaviour
         IMove entityMove = GetComponent<IMove>();
         _entityAttack = GetComponent<IAttack>();
 
-        var idle = new CameraStateIdle();
+        var idle = new EnemyIdleState();
         var chase = new EnemySteeringState(entityMove, _steering);
         var attack = new EnemyAttackState(_entityAttack);
 

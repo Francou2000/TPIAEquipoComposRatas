@@ -5,7 +5,7 @@ using UnityEngine;
 using static UnityEngine.UI.Image;
 using UnityEngine.SocialPlatforms;
 
-public class EnemyModel : Entity, IAttack
+public class PasserbyModel : Entity, IAttack
 {
     public LayerMask attackMask;
     [SerializeField]
@@ -20,6 +20,7 @@ public class EnemyModel : Entity, IAttack
     public float personalArea;
     public LayerMask obsMask;
     ObstacleAvoidance _obs;
+
     protected override void Awake()
     {
         base.Awake();
@@ -32,23 +33,24 @@ public class EnemyModel : Entity, IAttack
     public Action OnAttack { get => _onAttack; set => _onAttack = value; }
     public Cooldown Cooldown { get => _attackCooldown; }
 
-    //Collider[] _enemies = new Collider[5];
+
     public void Attack()
     {
         Collider[] colls = Physics.OverlapSphere(transform.position, _attackOfSight.range, attackMask);
-        //int count = Physics.OverlapSphereNonAlloc(transform.position, _attackOfSight.range, _enemies, attackMask);
+        
         foreach (var item in colls)
         {
             var currTarget = item.transform;
             if (!_attackOfSight.CheckAngle(currTarget)) continue;
             if (!_attackOfSight.CheckView(currTarget)) continue;
-            //
+            
             Destroy(item.gameObject);
             break;
         }
         _attackCooldown.ResetCooldown();
         _onAttack();
     }
+
     public override void Move(Vector3 dir)
     {
         dir = _obs.GetDir(dir, false);
