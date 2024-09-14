@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     IMove _move;
-
+    IInteract _interact;
     FSM<StateEnum> _fsm;
 
     void Start()
@@ -19,10 +20,15 @@ public class PlayerController : MonoBehaviour
         _fsm = new FSM<StateEnum>();
         var idle = new PlayerStateIdle<StateEnum>(_fsm, StateEnum.Move, _move);
         var move = new PlayerStateMove(_fsm, _move);
+        var interact = new PlayerStateInteract(_fsm, _interact);
 
         idle.AddTransition(StateEnum.Move, move);
+        idle.AddTransition(StateEnum.Interact, interact);
 
         move.AddTransition(StateEnum.Idle, idle);
+        move.AddTransition(StateEnum.Interact, interact);
+
+        interact.AddTransition(StateEnum.Idle, idle);
 
         _fsm.SetInitial(idle);
     }
