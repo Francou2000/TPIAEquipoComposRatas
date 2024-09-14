@@ -13,12 +13,6 @@ public class PlayerStateInteract : State<StateEnum>
         _fsm = fsm;
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-        _interact.Interact();
-    }
-
     public override void Execute()
     {
         base.Execute();
@@ -26,10 +20,5 @@ public class PlayerStateInteract : State<StateEnum>
         {
             _fsm.Transition(StateEnum.Idle);
         }
-    }
-    public override void Exit()
-    {
-        base.Exit();
-        _interact.Interact();
     }
 }

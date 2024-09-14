@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerModel : Entity, IInteract
 {
     Action _onInteract = delegate { };
+
     public void Interact()
     {
         _onInteract();
