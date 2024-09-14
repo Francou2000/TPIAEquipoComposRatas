@@ -6,7 +6,7 @@ public enum StateEnum
 {
    Idle,
    Move,
-   Spin,
+   Interact,
    Alert,
    Attack,
    Chase
