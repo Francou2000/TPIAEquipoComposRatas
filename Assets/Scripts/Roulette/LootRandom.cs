@@ -20,13 +20,13 @@ public class LootRandom : MonoBehaviour
         }
     }
 
-    public void GetRandomCard()
+    public void GetRandomLoot()
     {
-        RarirtyEnum rarity = MyRandoms.Roulette(_items);
-        SetCard(rarity);
+        RarirtyEnum rarity = RouletteRandom.Roulette(_items);
+        SetLoot(rarity);
     }
 
-    void SetCard(RarirtyEnum rarity)
+    void SetLoot(RarirtyEnum rarity)
     {
         if (!dataBase) return;
         if (!dataBase.cards.ContainsKey(rarity)) return;
