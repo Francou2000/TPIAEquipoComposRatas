@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class LootRandom : MonoBehaviour
 {
     public DataBase dataBase;
-    public LootView view;
     public List<RarityInfo> infos;
+    public Transform spawnPoint;  
+
     Dictionary<RarirtyEnum, float> _items;
 
     private void Awake()
@@ -20,20 +21,23 @@ public class LootRandom : MonoBehaviour
         }
     }
 
-    public void GetRandomLoot()
+    public void GetRandomItem()
     {
         RarirtyEnum rarity = RouletteRandom.Roulette(_items);
-        SetLoot(rarity);
+        SpawnLoot(rarity);
     }
 
-    void SetLoot(RarirtyEnum rarity)
+    void SpawnLoot(RarirtyEnum rarity)
     {
         if (!dataBase) return;
-        if (!dataBase.cards.ContainsKey(rarity)) return;
+        if (!dataBase.items.ContainsKey(rarity)) return;
         Debug.Log(rarity);
-        Sprite[] cards = dataBase.cards[rarity];
-        int random = UnityEngine.Random.Range(0,cards.Length); 
-        view.SetLoot(rarity, cards[random]);
-        view.AppearLoot();
+
+        GameObject[] items = dataBase.items[rarity];
+
+        int randomIndex = UnityEngine.Random.Range(0, items.Length);
+        GameObject selectedItem = items[randomIndex];
+
+        Instantiate(selectedItem, spawnPoint.position, Quaternion.identity);
     }
 }

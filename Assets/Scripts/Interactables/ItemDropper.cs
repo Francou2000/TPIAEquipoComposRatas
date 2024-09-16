@@ -5,8 +5,7 @@ using UnityEngine;
 public class ItemDropper : MonoBehaviour
 {
     public LootRandom lootRandom;             
-    public PlayerInventory playerInventory;   
-    public LootView lootView;                 
+    public PlayerInventory playerInventory;  
 
     public void Interact()
     {
@@ -18,13 +17,8 @@ public class ItemDropper : MonoBehaviour
 
     private void DropItem()
     {
-        lootRandom.GetRandomLoot();
+        lootRandom.GetRandomItem();
 
-        Sprite droppedItem = lootView.Image;
-
-        if (droppedItem != null)
-        {
-            playerInventory.PickupItem(droppedItem);
-        }
+        playerInventory.PickupItem();
     }
 }

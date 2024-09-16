@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DataBase : MonoBehaviour
+
 {
-    public Dictionary<RarirtyEnum, Sprite[]> cards = new Dictionary<RarirtyEnum, Sprite[]>();
+    public Dictionary<RarirtyEnum, GameObject[]> items = new Dictionary<RarirtyEnum, GameObject[]>();
 
     private void Awake()
     {
-        var sr = Resources.LoadAll<Sprite>("Assets/Graphic/Sprites/LootImages/SR");
-        var r = Resources.LoadAll<Sprite>("Assets/Graphic/Sprites/LootImages/R");
-        var c = Resources.LoadAll<Sprite>("Assets/Graphic/Sprites/LootImages/C");
+        var sr = Resources.LoadAll<GameObject>("Items/SR");
+        var r = Resources.LoadAll<GameObject>("Items/R");
+        var c = Resources.LoadAll<GameObject>("Items/C");
 
-        cards.Add(RarirtyEnum.SR, sr);
-        cards.Add(RarirtyEnum.R, r);
-        cards.Add(RarirtyEnum.C, c);
+        items.Add(RarirtyEnum.SR, sr);
+        items.Add(RarirtyEnum.R, r);
+        items.Add(RarirtyEnum.C, c);
     }
 }

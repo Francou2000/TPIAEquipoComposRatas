@@ -5,17 +5,14 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public bool _hasItem = false;
-    public Sprite _currentItemSprite;
 
-    public void PickupItem(Sprite itemSprite)
+    public void PickupItem()
     {
         _hasItem = true;
-        _currentItemSprite = itemSprite;
     }
 
     public void DropItem()
     {
         _hasItem = false;
-        _currentItemSprite = null;
     }
 }

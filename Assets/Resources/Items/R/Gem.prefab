@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4664121348954811142}
   - component: {fileID: 8580925410748621987}
   - component: {fileID: 5832554573219991657}
+  - component: {fileID: 8536330664917943414}
   m_Layer: 0
   m_Name: Gem
   m_TagString: Untagged
@@ -25,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5472323296289894844}
-  m_LocalRotation: {x: -0.00000019470718, y: 0.000000037748947, z: 1, w: 0.00000007549791}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: -0, y: 0.87, z: -3.24}
   m_LocalScale: {x: 43.966175, y: 43.966175, z: 43.966175}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
 --- !u!33 &8580925410748621987
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -84,3 +85,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8536330664917943414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5472323296289894844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3912f94544e94ee46af41f6429d95379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  rotationSpeed: 30
+  offset: {x: 0, y: 2, z: 0}
