@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     IMove _move;
     FSM<StateEnum> _fsm;
-
+    public Transform _cameraTransform;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         _fsm = new FSM<StateEnum>();
         var idle = new PlayerStateIdle<StateEnum>(_fsm, StateEnum.Move, _move);
-        var move = new PlayerStateMove(_fsm, _move);
+        var move = new PlayerStateMove(_fsm, _move, _cameraTransform);
 
         idle.AddTransition(StateEnum.Move, move);
 
