@@ -8,9 +8,9 @@ public class DataBase : MonoBehaviour
 
     private void Awake()
     {
-        var sr = Resources.LoadAll<Sprite>("Cards/SR");
-        var r = Resources.LoadAll<Sprite>("Cards/R");
-        var c = Resources.LoadAll<Sprite>("Cards/C");
+        var sr = Resources.LoadAll<Sprite>("Assets/Graphic/Sprites/LootImages/SR");
+        var r = Resources.LoadAll<Sprite>("Assets/Graphic/Sprites/LootImages/R");
+        var c = Resources.LoadAll<Sprite>("Assets/Graphic/Sprites/LootImages/C");
 
         cards.Add(RarirtyEnum.SR, sr);
         cards.Add(RarirtyEnum.R, r);
