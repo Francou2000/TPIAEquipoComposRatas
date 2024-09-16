@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ItemDropper : MonoBehaviour
 {
-    public LootRandom lootRandom;             
-    public PlayerInventory playerInventory;  
+    public LootRandom _lootRandom;             
+    public PlayerInventory _inventory;  
 
     public void Interact()
     {
-        if (!playerInventory._hasItem)
+        if (!_inventory._hasItem)
         {
             DropItem();
         }
@@ -17,8 +17,11 @@ public class ItemDropper : MonoBehaviour
 
     private void DropItem()
     {
-        lootRandom.GetRandomItem();
+        GameObject droppedItem = _lootRandom.GetRandomItem();
 
-        playerInventory.PickupItem();
+        if (droppedItem != null)
+        {
+            _inventory.PickupItem(droppedItem);
+        }
     }
 }

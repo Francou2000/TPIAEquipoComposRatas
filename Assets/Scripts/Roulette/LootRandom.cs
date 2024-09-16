@@ -21,23 +21,31 @@ public class LootRandom : MonoBehaviour
         }
     }
 
-    public void GetRandomItem()
+    public GameObject GetRandomItem()
     {
         RarirtyEnum rarity = RouletteRandom.Roulette(_items);
-        SpawnLoot(rarity);
+        return SpawnLoot(rarity);
     }
 
-    void SpawnLoot(RarirtyEnum rarity)
+    private GameObject SpawnLoot(RarirtyEnum rarity)
     {
-        if (!dataBase) return;
-        if (!dataBase.items.ContainsKey(rarity)) return;
-        Debug.Log(rarity);
+        if (!dataBase) return null;
+        if (!dataBase.items.ContainsKey(rarity)) return null;
 
         GameObject[] items = dataBase.items[rarity];
 
         int randomIndex = UnityEngine.Random.Range(0, items.Length);
         GameObject selectedItem = items[randomIndex];
 
-        Instantiate(selectedItem, spawnPoint.position, Quaternion.identity);
+        GameObject spawnedItem = Instantiate(selectedItem, spawnPoint.position, Quaternion.identity);
+
+        LootableItem lootable = spawnedItem.GetComponent<LootableItem>();
+        if (lootable != null)
+        {
+            int itemValue = infos.Find(info => info.type == rarity).value;
+            lootable.SetItemValue(itemValue);
+        }
+
+        return spawnedItem;
     }
 }

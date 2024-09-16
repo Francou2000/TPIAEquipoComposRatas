@@ -6,7 +6,9 @@ public class LootableItem : MonoBehaviour
 {
     private Transform _player; 
     public float _rotationSpeed = 30f;  
-    public Vector3 _offset = new Vector3(0, 1, 0);  
+    public Vector3 _offset = new Vector3(0, 2, 0);
+
+    public int _itemValue;
 
     private void Start()
     {
@@ -27,5 +29,10 @@ public class LootableItem : MonoBehaviour
         {
             transform.position = _player.position + _offset;
         }
+    }
+
+    public void SetItemValue(int value)
+    {
+        _itemValue = value;
     }
 }

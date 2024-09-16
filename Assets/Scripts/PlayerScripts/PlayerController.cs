@@ -8,8 +8,6 @@ public class PlayerController : MonoBehaviour
     IMove _move;
     FSM<StateEnum> _fsm;
 
-    private Interactable _interactable;
-
 
     void Start()
     {
@@ -33,11 +31,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _fsm.OnUpdate();
-
-        if (_interactable != null && Input.GetKeyDown(KeyCode.E))
-        {
-            _interactable.Interact();
-        }
     }
 
     private void FixedUpdate()
@@ -48,21 +41,5 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         _fsm.OnLateUpdate();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Interactable"))
-        {
-            _interactable = other.GetComponent<Interactable>();
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Interactable"))
-        {
-            _interactable = null;
-        }
     }
 }

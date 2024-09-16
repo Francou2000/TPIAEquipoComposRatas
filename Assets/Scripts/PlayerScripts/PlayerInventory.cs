@@ -5,14 +5,25 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public bool _hasItem = false;
+    private GameObject _item;
 
-    public void PickupItem()
+    public void PickupItem(GameObject item)
     {
         _hasItem = true;
+        _item = item;
     }
 
-    public void DropItem()
+    public GameObject DropItem()
     {
-        _hasItem = false;
+        if (_hasItem && _item != null)
+        {
+            _hasItem = false;
+            GameObject itemTo = _item;
+            GameObject itemToDrop = _item;
+            _item = null;
+            return itemToDrop;
+        }
+
+        return null;
     }
 }

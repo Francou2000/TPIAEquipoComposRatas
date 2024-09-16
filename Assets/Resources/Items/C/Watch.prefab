@@ -99,6 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3912f94544e94ee46af41f6429d95379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  rotationSpeed: 30
-  offset: {x: 0, y: 2, z: 0}
+  _rotationSpeed: 30
+  _offset: {x: 0, y: 2, z: 0}
+  _itemValue: 0

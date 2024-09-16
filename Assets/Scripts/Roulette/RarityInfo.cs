@@ -7,4 +7,5 @@ public class RarityInfo
 {
     public RarirtyEnum type;
     public float weight;
+    public int value;
 }
