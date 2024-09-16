@@ -6,12 +6,16 @@ using UnityEngine;
 public class PasserbyController : MonoBehaviour, IWaitTimer, IPatrol
 {
     public Rigidbody target;
+    [Header("Line of Sight")]
     public LineOfSight los;
     public float idleLos;
     public float alertedLos;
     public float idleLosAngle;
     public float alertedLosAngle;
+    
+    [Header("Obstacle Avoidance")]
     public float timePrediction;
+    [field: Header("Patrol")]
     [field: SerializeField] public Transform PatrolPointA { get; set; }
     [field: SerializeField] public Transform PatrolPointB { get; set; }
     public Transform CurrentTarget { get; set; }
@@ -19,8 +23,10 @@ public class PasserbyController : MonoBehaviour, IWaitTimer, IPatrol
     FSM<StateEnum> _fsm;
     ITreeNode _root;
     ISteering _steering;
-    public float WaitTimer { get; set; }
+    
+    [field: Header("Idle Wait")]
     [field: SerializeField] public float WaitTime { get; set; }
+    public float WaitTimer { get; set; }
     public bool DoneWaiting { get; set; }
 
     private void Start()

@@ -13,12 +13,14 @@ public class EnemyIdleState : State<StateEnum>
 
     public override void Enter()
     {
+        //Reinicio del timer 
         _waitTimer.WaitTimer = 0;
         _waitTimer.DoneWaiting = false;
     }
     
     public override void Execute()
     {
+        //Timer del idle. Si llega al máximo, "avisa" que terminó de esperar.
         _waitTimer.WaitTimer += Time.deltaTime;
         if (_waitTimer.WaitTimer >= _waitTimer.WaitTime) _waitTimer.DoneWaiting = true;
     }

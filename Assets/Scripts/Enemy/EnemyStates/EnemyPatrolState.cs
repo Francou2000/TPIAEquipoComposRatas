@@ -26,6 +26,7 @@ public class EnemyPatrolState : State<StateEnum>
         _los = los;
         _idleLos = idleLos;
         _idleLosAngle = idleLosAngle;
+        //son muchas cosas pero prometo que son necesarias, es el estado donde pasa la mayoría del tiempo
     }
     public override void Enter()
     {
@@ -39,11 +40,11 @@ public class EnemyPatrolState : State<StateEnum>
         InitializedSteering();
         _los.range = _idleLos;
         _los.angle = _idleLosAngle;
+        //Actualizo el LoS y preparo el steering para el próximo punto de patrullaje
     }
     public override void Execute()
     {
         base.Execute();
-        //Debug.Log("Patrolling to B:" + pointAtoB);
         Vector3 dir = _steering.GetDir();
         _move.Move(dir.normalized);
 
@@ -66,7 +67,7 @@ public class EnemyPatrolState : State<StateEnum>
             pointAtoB = true;
             _patrol.CurrentTarget = _pointB;
         }
-        
+        //Al salir del estado, preparo el próximo punto de patrullaje
     } 
     
     void InitializedSteering()

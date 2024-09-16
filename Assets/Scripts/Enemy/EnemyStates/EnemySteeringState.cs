@@ -22,6 +22,7 @@ public class EnemySteeringState : State<StateEnum>
     {
         _los.range = _alertedLos;
         _los.angle = _alertedLosAngle;
+        //actualizo el LoS
     }
     
     public override void Execute()

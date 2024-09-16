@@ -5,24 +5,32 @@ using UnityEngine;
 public class CopController : MonoBehaviour, IWaitTimer, IPatrol
 {
     public Rigidbody target;
+    
+    [Header("Line of Sight")]
     public LineOfSight los;
     public float idleLos;
     public float alertedLos;
     public float idleLosAngle;
     public float alertedLosAngle;
+    
+    [Header("Obstacle Avoidance")]
     public float timePrediction;
+    
+    [field: Header("Patrol")]
     [field: SerializeField] public Transform PatrolPointA { get; set; }
     [field: SerializeField] public Transform PatrolPointB { get; set; }
     public Transform CurrentTarget { get; set; }
     public bool HasArrived { get; set; }
-    public float WaitTimer { get; set; }
+    
+    [field: Header("Idle Wait")]
     [field: SerializeField] public float WaitTime { get; set; }
+    public float WaitTimer { get; set; }
     public bool DoneWaiting { get; set; }
+    
     FSM<StateEnum> _fsm;
     IAttack _entityAttack;
     ITreeNode _root;
     ISteering _steering;
-    //ISteering _steeringPatrol;
     
 
     private void Start()
@@ -99,7 +107,7 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol
 
     bool _HasArrived()
     {
-        
+        //Chequeo haber llegado al punto de patrulla de forma aproximada
         Debug.Log(AlmostEqual(transform.position, CurrentTarget.position, 0.05f));
         return AlmostEqual(transform.position, CurrentTarget.position, 0.05f);
     }
