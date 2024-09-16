@@ -9,5 +9,6 @@ public enum StateEnum
    Interact,
    Alert,
    Attack,
-   Chase
+   Chase,
+   Patrol
 }

@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reference: {fileID: 337314136}
-  range: 5
+  range: 6
   angle: 90
   obsMask:
     serializedVersion: 2
@@ -215,7 +215,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   los: {fileID: 408830583}
+  idleLos: 6
+  alertedLos: 10
+  idleLosAngle: 90
+  alertedLosAngle: 90
   timePrediction: 3
+  <PatrolPointA>k__BackingField: {fileID: 0}
+  <PatrolPointB>k__BackingField: {fileID: 0}
+  <WaitTime>k__BackingField: 4
 --- !u!114 &1355067677
 MonoBehaviour:
   m_ObjectHideFlags: 0
