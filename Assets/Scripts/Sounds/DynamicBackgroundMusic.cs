@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DynamicBackgroundMusic : MonoBehaviour
 {
-    public float _volume = 0.5f;
-
     public AudioClip _normalMusic;    
     public AudioClip _dangerMusic;    
 
@@ -20,7 +18,6 @@ public class DynamicBackgroundMusic : MonoBehaviour
         {
             _audioSource.clip = _normalMusic;
             _audioSource.loop = true;
-            _audioSource.volume = _volume;
             _audioSource.Play();
         }
     }
