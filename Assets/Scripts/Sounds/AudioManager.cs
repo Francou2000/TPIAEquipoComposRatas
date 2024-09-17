@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class AudioManager : MonoBehaviour
 {
@@ -41,65 +42,101 @@ public class AudioManager : MonoBehaviour
         {
             _sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
         }
-    }
 
-    private void OnLevelWasLoaded(int level)
-    {
-        FindAudioSourcesInScene(); 
-    }
-
-    void FindAudioSourcesInScene()
-    {
-        GameObject[] musicObjects = FindObjectsByLayer(_sfxLayer);
-        _musicSources = new AudioSource[musicObjects.Length];
-        for (int i = 0; i < musicObjects.Length; i++)
-        {
-            _musicSources[i] = musicObjects[i].GetComponent<AudioSource>();
-        }
-
-        GameObject[] sfxObjects = FindObjectsByLayer(_sfxLayer);
-        _soundEffectSources = new AudioSource[sfxObjects.Length];
-        for (int i = 0; i < sfxObjects.Length; i++)
-        {
-            _soundEffectSources[i] = sfxObjects[i].GetComponent<AudioSource>();
-        }
+        FindAudioSourcesInScene();
     }
 
     GameObject[] FindObjectsByLayer(LayerMask layerMask)
     {
-        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
         List<GameObject> objectsInLayer = new List<GameObject>();
 
         foreach (GameObject obj in allObjects)
         {
-            if (((1 << obj.layer) & layerMask) != 0)
+            int objLayer = obj.layer;
+            Debug.Log($"Object: {obj.name}, Layer: {LayerMask.LayerToName(objLayer)}");
+
+            if ((1 << objLayer) != 0)
             {
                 objectsInLayer.Add(obj);
             }
         }
 
+        if (objectsInLayer.Count == 0)
+        {
+            Debug.LogWarning("No objects found on the specified layer.");
+        }
+
         return objectsInLayer.ToArray();
+    }
+
+    void FindAudioSourcesInScene()
+    {
+        GameObject[] musicObjects = FindObjectsByLayer(_musicLayer);
+        if (musicObjects.Length > 0)
+        {
+            _musicSources = new AudioSource[musicObjects.Length];
+            for (int i = 0; i < musicObjects.Length; i++)
+            {
+                _musicSources[i] = musicObjects[i].GetComponent<AudioSource>();
+                Debug.Log("SFX source found: " + musicObjects[i].name);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No SFX sources found in the scene on the specified layer.");
+        }
+
+
+        GameObject[] sfxObjects = FindObjectsByLayer(_sfxLayer);
+        if (sfxObjects.Length > 0)
+        {
+            _soundEffectSources = new AudioSource[sfxObjects.Length];
+            for (int i = 0; i < sfxObjects.Length; i++)
+            {
+                _soundEffectSources[i] = sfxObjects[i].GetComponent<AudioSource>();
+                Debug.Log("SFX source found: " + sfxObjects[i].name);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No SFX sources found in the scene on the specified layer.");
+        }
     }
 
     public void SetMusicVolume(float volume)
     {
-        foreach (AudioSource sfxSource in _musicSources)
+        if (_soundEffectSources != null && _soundEffectSources.Length > 0)
         {
-            if (sfxSource != null)
+            foreach (AudioSource musicSource in _musicSources)
             {
-                sfxSource.volume = volume;
+                if (musicSource != null)
+                {
+                    musicSource.volume = volume;
+                }
             }
+        }
+        else
+        {
+            Debug.LogWarning("MusicSource is not assigned or not found in the scene!");
         }
     }
 
     public void SetSFXVolume(float volume)
     {
-        foreach (AudioSource sfxSource in _soundEffectSources)
+        if (_soundEffectSources != null && _soundEffectSources.Length > 0)
         {
-            if (sfxSource != null)
+            foreach (AudioSource sfxSource in _soundEffectSources)
             {
-                sfxSource.volume = volume;
+                if (sfxSource != null)
+                {
+                    sfxSource.volume = volume;
+                }
             }
+        }
+        else
+        {
+            Debug.LogWarning("No sound effect sources found in the scene or soundEffectSources array is empty.");
         }
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -513,7 +513,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122307652}
-  m_LocalRotation: {x: -0.1184087, y: -0.000000017611773, z: -0.000000002100162, w: 0.992965}
+  m_LocalRotation: {x: -0.1184087, y: 0.000000017611153, z: 0.000000002100088, w: 0.992965}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -778,7 +778,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252302541}
-  m_LocalRotation: {x: -0.06976696, y: 3.38624e-39, z: 6.06602e-40, w: 0.9975633}
+  m_LocalRotation: {x: -0.06976696, y: 1e-45, z: -0, w: 0.9975633}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1567,7 +1567,7 @@ PrefabInstance:
     - target: {fileID: 5717187955938829103, guid: 742ffe238947e9344926a06d05ed8ee0,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8483904098750010535, guid: 742ffe238947e9344926a06d05ed8ee0,
         type: 3}
@@ -3209,21 +3209,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1237085324}
     m_Modifications:
-    - target: {fileID: 3781365606075378979, guid: 742ffe238947e9344926a06d05ed8ee0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4904031104140490448, guid: 742ffe238947e9344926a06d05ed8ee0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5717187955938829103, guid: 742ffe238947e9344926a06d05ed8ee0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 8483904098750010535, guid: 742ffe238947e9344926a06d05ed8ee0,
         type: 3}
       propertyPath: m_RootOrder
@@ -3283,11 +3268,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 9148835562055650845, guid: 742ffe238947e9344926a06d05ed8ee0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 742ffe238947e9344926a06d05ed8ee0, type: 3}
@@ -3414,7 +3394,7 @@ PrefabInstance:
     - target: {fileID: 5717187955938829103, guid: 742ffe238947e9344926a06d05ed8ee0,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8483904098750010535, guid: 742ffe238947e9344926a06d05ed8ee0,
         type: 3}
@@ -4304,26 +4284,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9143439695921535538, guid: 08655e835a86e534bb893c6ba0805bb4,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 5.387745
-      objectReference: {fileID: 0}
-    - target: {fileID: 9143439695921535538, guid: 08655e835a86e534bb893c6ba0805bb4,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 10.032346
-      objectReference: {fileID: 0}
-    - target: {fileID: 9143439695921535538, guid: 08655e835a86e534bb893c6ba0805bb4,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 15.262514
-      objectReference: {fileID: 0}
-    - target: {fileID: 9143439695921535538, guid: 08655e835a86e534bb893c6ba0805bb4,
-        type: 3}
-      propertyPath: m_Center.z
-      value: -8.69441
       objectReference: {fileID: 0}
     - target: {fileID: 9143439695921535539, guid: 08655e835a86e534bb893c6ba0805bb4,
         type: 3}

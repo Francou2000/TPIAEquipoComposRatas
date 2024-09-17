@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9143439695921535536}
   - component: {fileID: 9143439695921535539}
   - component: {fileID: 9143439695921535538}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DropZone
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventory: {fileID: 0}
   _playerPoints: 0
+  _scenesManagement: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _moneySound: {fileID: 0}
 --- !u!65 &9143439695921535538
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58,5 +61,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 1, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5.387745, y: 1, z: 10.032346}
+  m_Center: {x: 15.262514, y: 0, z: -8.69441}

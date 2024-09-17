@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2074540509770255087}
   - component: {fileID: 2074540509770255086}
   - component: {fileID: 2074540509770255075}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Safe
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 4285716573085291786}
   - component: {fileID: 4038418828763976128}
   - component: {fileID: 8944094473705793578}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 832295794009623572}
   - component: {fileID: 7103573297384511159}
   - component: {fileID: 6843052395459201017}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 3673533688855766688}
   - component: {fileID: 7565739329385626492}
   - component: {fileID: 8824942430261964615}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 2621584486451368772}
   - component: {fileID: 3569726094581838185}
   - component: {fileID: 8607039985025919224}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 511879490458163940}
   - component: {fileID: 2980492643574643535}
   - component: {fileID: 1917243358860284690}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
