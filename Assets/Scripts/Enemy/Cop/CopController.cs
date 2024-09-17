@@ -41,6 +41,9 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
     List<Rigidbody> _passersbyrb = new List<Rigidbody>();
     List<IAlert> _passersbyAlerts = new List<IAlert>();
 
+    public AudioSource _audioSource;
+    public DynamicBackgroundMusic _backgroundMusic;
+
     private void Start()
     {
         InitializedSteering();

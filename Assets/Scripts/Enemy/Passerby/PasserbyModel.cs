@@ -5,15 +5,8 @@ using UnityEngine;
 using static UnityEngine.UI.Image;
 using UnityEngine.SocialPlatforms;
 
-public class PasserbyModel : Entity, IAttack
+public class PasserbyModel : Entity
 {
-    public LayerMask attackMask;
-    [SerializeField]
-    LineOfSight _attackOfSight;
-    Action _onAttack;
-    public float attackCooldownTime;
-    Cooldown _attackCooldown;
-
     [Header("Obstacle Avoidance")]
     public float radius;
     public float angle;
@@ -24,31 +17,7 @@ public class PasserbyModel : Entity, IAttack
     protected override void Awake()
     {
         base.Awake();
-        _attackCooldown = new Cooldown(attackCooldownTime);
         _obs = new ObstacleAvoidance(transform, radius, angle, personalArea, obsMask);
-    }
-
-    public float GetAttackRange => _attackOfSight.range;
-
-    public Action OnAttack { get => _onAttack; set => _onAttack = value; }
-    public Cooldown Cooldown { get => _attackCooldown; }
-
-
-    public void Attack()
-    {
-        Collider[] colls = Physics.OverlapSphere(transform.position, _attackOfSight.range, attackMask);
-        
-        foreach (var item in colls)
-        {
-            var currTarget = item.transform;
-            if (!_attackOfSight.CheckAngle(currTarget)) continue;
-            if (!_attackOfSight.CheckView(currTarget)) continue;
-            
-            Destroy(item.gameObject);
-            break;
-        }
-        _attackCooldown.ResetCooldown();
-        _onAttack();
     }
 
     public override void Move(Vector3 dir)
@@ -58,6 +27,7 @@ public class PasserbyModel : Entity, IAttack
         Look(dir);
         base.Move(dir);
     }
+
     private void OnDrawGizmosSelected()
     {
         Color myColor = Color.cyan;
