@@ -14,6 +14,8 @@ public class CopModel : Entity, IAttack
     public float attackCooldownTime;
     Cooldown _attackCooldown;
 
+    public ScenesManagement _scenesManagament;
+
     [Header("Obstacle Avoidance")]
     public float radius;
     public float angle;
@@ -45,6 +47,9 @@ public class CopModel : Entity, IAttack
             if (!_attackOfSight.CheckView(currTarget)) continue;
             
             Destroy(item.gameObject);
+
+            _scenesManagament.LoadScene("Defeat");
+
             break;
         }
         _attackCooldown.ResetCooldown();

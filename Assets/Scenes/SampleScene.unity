@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -513,7 +513,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122307652}
-  m_LocalRotation: {x: -0.089438014, y: -1e-45, z: -0, w: 0.9959924}
+  m_LocalRotation: {x: -0.089438014, y: -0, z: -0, w: 0.9959924}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -778,7 +778,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252302541}
-  m_LocalRotation: {x: -0.019988004, y: 0.00000001725666, z: 3.4499517e-10, w: 0.9998002}
+  m_LocalRotation: {x: -0.019988025, y: 0.000000017204133, z: 3.4394532e-10, w: 0.9998002}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1010,7 +1010,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.019988004, y: -0.000000058271986, z: -0.0000000011649735,
+  m_LocalRotation: {x: -0.019988002, y: -0.000000055251903, z: -0.0000000011045959,
     w: 0.99980026}
   m_LocalPosition: {x: 37.757812, y: -0.39, z: -11.678289}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -2635,8 +2635,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980925494}
-  m_LocalRotation: {x: -0.019988008, y: -0.000000050077944, z: -0.0000000010011583,
-    w: 0.9998002}
+  m_LocalRotation: {x: -0.019988008, y: -0.000000046529014, z: -9.3020813e-10, w: 0.9998002}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4036,7 +4035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7c17db0f0bd48478374e50aabc9cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropZone: {fileID: 0}
 --- !u!4 &1666367672
 Transform:
   m_ObjectHideFlags: 0
@@ -4333,6 +4331,11 @@ PrefabInstance:
       propertyPath: _inventory
       value: 
       objectReference: {fileID: 1847600986}
+    - target: {fileID: 9143439695921535539, guid: 08655e835a86e534bb893c6ba0805bb4,
+        type: 3}
+      propertyPath: _scenesManagement
+      value: 
+      objectReference: {fileID: 1666367671}
     - target: {fileID: 9143439695921535549, guid: 08655e835a86e534bb893c6ba0805bb4,
         type: 3}
       propertyPath: m_Name
