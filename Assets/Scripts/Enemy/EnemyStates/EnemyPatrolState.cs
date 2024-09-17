@@ -15,17 +15,19 @@ public class EnemyPatrolState : State<StateEnum>
     private Transform _unitTransform;
     private bool pointAtoB;
     private ISteering _steering;
+    private IAlert _alert;
     
-    public EnemyPatrolState(Transform pointA, Transform pointB, IMove move, Transform unitTransform, IPatrol patrol, LineOfSight los, float idleLos, float idleLosAngle)
+    public EnemyPatrolState(IMove move, Transform unitTransform, IPatrol patrol, IAlert alert, LineOfSight los, float idleLos, float idleLosAngle)
     {
-        _pointA = pointA;
-        _pointB = pointB;
+        _pointA = patrol.PatrolPointA;
+        _pointB = patrol.PatrolPointB;
         _move = move;
         _unitTransform = unitTransform;
         _patrol = patrol;
         _los = los;
         _idleLos = idleLos;
         _idleLosAngle = idleLosAngle;
+        _alert = alert;
         //son muchas cosas pero prometo que son necesarias, es el estado donde pasa la mayoría del tiempo
     }
     public override void Enter()
@@ -40,6 +42,7 @@ public class EnemyPatrolState : State<StateEnum>
         InitializedSteering();
         _los.range = _idleLos;
         _los.angle = _idleLosAngle;
+        _alert.IsAlerted = false;
         //Actualizo el LoS y preparo el steering para el próximo punto de patrullaje
     }
     public override void Execute()

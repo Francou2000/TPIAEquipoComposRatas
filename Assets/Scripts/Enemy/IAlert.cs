@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IAlert
 {
-    bool IsAlert { get; set; }
+    bool IsAlerted { get; set; }
+    float AlertedTimer { get; set; }
+    float AlertedTime { get; set; }
 }

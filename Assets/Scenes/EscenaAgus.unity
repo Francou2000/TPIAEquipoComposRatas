@@ -227,6 +227,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Passerby
       objectReference: {fileID: 0}
+    - target: {fileID: 5370617600174624916, guid: babce55e478adb44380dce2906b893c1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Passerby
+      objectReference: {fileID: 0}
     - target: {fileID: 5370617600174624921, guid: babce55e478adb44380dce2906b893c1,
         type: 3}
       propertyPath: m_RootOrder
