@@ -1,44 +1,58 @@
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public float openRotationAngle = 90f;   
-    public float rotationSpeed = 2f;       
-    public Vector3 rotationAxis = Vector3.up; 
+    public float _openRotationAngle = 90f;   
+    public float _rotationSpeed = 2f;       
+    public Vector3 _rotationAxis = Vector3.up;
 
-    private bool isOpen = false;           
-    private Quaternion closedRotation;      
-    private Quaternion openRotation;        
-    private bool isMoving = false;          
+    public AudioSource _audioSource;        
+    public AudioClip _openSound;            
+    public AudioClip _closeSound;
+
+    private bool _isOpen = false;           
+    private Quaternion _closedRotation;      
+    private Quaternion _openRotation;        
+    private bool _isMoving = false;          
 
     void Start()
     {
-         closedRotation = transform.rotation;
+         _closedRotation = transform.rotation;
 
-         openRotation = Quaternion.Euler(rotationAxis * openRotationAngle) * closedRotation;
+         _openRotation = Quaternion.Euler(_rotationAxis * _openRotationAngle) * _closedRotation;
     }
 
     public void Interact()
     {
-        if (!isMoving)
+        if (!_isMoving)
         {
-            isOpen = !isOpen;  
-            isMoving = true;   
+            _isOpen = !_isOpen;
+            _isMoving = true;
+
+            if (_isOpen && _openSound != null)
+            {
+                _audioSource.PlayOneShot(_openSound);
+            }
+            else if (!_isOpen && _closeSound != null)
+            {
+                _audioSource.PlayOneShot(_closeSound);
+            }
         }
     }
 
     void Update()
     {
-        if (isMoving)
+        if (_isMoving)
         {
-            Quaternion targetRotation = isOpen ? openRotation : closedRotation;
+            Quaternion targetRotation = _isOpen ? _openRotation : _closedRotation;
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
 
             if (Quaternion.Angle(transform.rotation, targetRotation) < 0.1f)
             {
                 transform.rotation = targetRotation;  
-                isMoving = false;                  
+                _isMoving = false;                  
             }
         }
     }

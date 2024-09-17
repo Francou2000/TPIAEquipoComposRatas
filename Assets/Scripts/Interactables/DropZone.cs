@@ -9,11 +9,16 @@ public class DropZone : MonoBehaviour
     
     public ScenesManagement _scenesManagement;
 
+    public AudioSource _audioSource;
+    public AudioClip _moneySound;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && _inventory._hasItem)
         {
             GameObject droppedItem = _inventory.DropItem();
+
+            _audioSource.PlayOneShot(_moneySound);
 
             LootableItem lootableItem = droppedItem.GetComponent<LootableItem>();
             if (lootableItem != null )
