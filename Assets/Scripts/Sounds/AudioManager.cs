@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+        FindAudioSourcesInScene();
         LoadVolumeSettings();
     }
 
@@ -44,16 +45,14 @@ public class AudioManager : MonoBehaviour
         {
             _sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
         }
-
-        FindAudioSourcesInScene();
     }
 
     private void LoadVolumeSettings()
     {
-        float savedMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f); // Default to 0.5 if not set
+        float savedMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f); 
         SetMusicVolume(savedMusicVolume);
 
-        float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f); // Default to 0.5 if not set
+        float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f); 
         SetSFXVolume(savedSFXVolume);
     }
 
@@ -65,8 +64,6 @@ public class AudioManager : MonoBehaviour
         foreach (GameObject obj in allObjects)
         {
             int objLayer = obj.layer;
-            Debug.Log($"Object: {obj.name}, Layer: {LayerMask.LayerToName(objLayer)}");
-
             if ((1 << objLayer) != 0)
             {
                 objectsInLayer.Add(obj);
@@ -153,5 +150,10 @@ public class AudioManager : MonoBehaviour
         {
             Debug.LogWarning("No sound effect sources found in the scene or soundEffectSources array is empty.");
         }
+    }
+
+    public void RefreshAudioSources()
+    {
+        FindAudioSourcesInScene();
     }
 }

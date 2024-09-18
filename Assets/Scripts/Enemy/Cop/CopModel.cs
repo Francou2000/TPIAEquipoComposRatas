@@ -49,15 +49,16 @@ public class CopModel : Entity, IAttack
         {
             var currTarget = item.transform;
             if (!_attackOfSight.CheckAngle(currTarget)) continue;
-            if (!_attackOfSight.CheckView(currTarget)) continue;    
+            if (!_attackOfSight.CheckView(currTarget)) continue;
 
-            AttackRoutine(item);
+            StartCoroutine(AttackRoutine(item));
 
             break;
         }
         _attackCooldown.ResetCooldown();
         _onAttack();
     }
+
     public override void Move(Vector3 dir)
     {
         dir = _obs.GetDir(dir, false);
@@ -65,6 +66,7 @@ public class CopModel : Entity, IAttack
         Look(dir);
         base.Move(dir);
     }
+
     private void OnDrawGizmosSelected()
     {
         Color myColor = Color.cyan;
