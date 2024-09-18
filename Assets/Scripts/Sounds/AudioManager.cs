@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class AudioManager : MonoBehaviour
 {
@@ -28,7 +27,10 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
+
+        LoadVolumeSettings();
     }
 
     void Start()
@@ -44,6 +46,15 @@ public class AudioManager : MonoBehaviour
         }
 
         FindAudioSourcesInScene();
+    }
+
+    private void LoadVolumeSettings()
+    {
+        float savedMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f); // Default to 0.5 if not set
+        SetMusicVolume(savedMusicVolume);
+
+        float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f); // Default to 0.5 if not set
+        SetSFXVolume(savedSFXVolume);
     }
 
     GameObject[] FindObjectsByLayer(LayerMask layerMask)
@@ -115,6 +126,8 @@ public class AudioManager : MonoBehaviour
                     musicSource.volume = volume;
                 }
             }
+            PlayerPrefs.SetFloat("MusicVolume", volume); 
+            PlayerPrefs.Save();  
         }
         else
         {
@@ -133,6 +146,8 @@ public class AudioManager : MonoBehaviour
                     sfxSource.volume = volume;
                 }
             }
+            PlayerPrefs.SetFloat("SFXVolume", volume);  
+            PlayerPrefs.Save();  
         }
         else
         {
