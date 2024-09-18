@@ -9,7 +9,6 @@ public class ScenesManagement : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-        AudioManager._instance.RefreshAudioSources();
     }
 
     public void Quit()

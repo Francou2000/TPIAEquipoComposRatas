@@ -75,7 +75,7 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
         _entityAttack = GetComponent<IAttack>();
 
         var idle = new EnemyIdleState(this);
-        var chase = new EnemySteeringState(entityMove, _steering, this, los, alertedLos, alertedLosAngle);
+        var chase = new EnemySteeringState(entityMove, _steering, this, los, alertedLos, alertedLosAngle, _audioSource, _backgroundMusic);
         var patrol = new EnemyPatrolState(entityMove, transform, this, this, los, idleLos, idleLosAngle);
         var attack = new EnemyAttackState(_entityAttack);
 

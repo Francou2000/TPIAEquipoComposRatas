@@ -455,6 +455,7 @@ GameObject:
   - component: {fileID: 62605238}
   - component: {fileID: 62605237}
   - component: {fileID: 62605239}
+  - component: {fileID: 62605240}
   m_Layer: 10
   m_Name: BackgroundMusic
   m_TagString: Untagged
@@ -587,6 +588,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &62605240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62605236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f2165b5e41b5eb4783c02c2fee1a09d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &108539529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5370617600174624921, guid: babce55e478adb44380dce2906b893c1,
@@ -981,6 +994,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1847600991}
+    - target: {fileID: 1355067676, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 62605237}
     - target: {fileID: 1355067676, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: <PatrolPointA>k__BackingField
       value: 
@@ -2282,6 +2299,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1847600991}
     - target: {fileID: 1355067676, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 62605237}
+    - target: {fileID: 1355067676, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: <PatrolPointA>k__BackingField
       value: 
       objectReference: {fileID: 2038474172}
@@ -3386,7 +3407,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980925494}
-  m_LocalRotation: {x: -0.06976696, y: -1e-45, z: -0, w: 0.9975633}
+  m_LocalRotation: {x: -0.06976696, y: 1e-45, z: -0, w: 0.9975633}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4037,6 +4058,55 @@ Transform:
   - {fileID: 1413390146}
   m_Father: {fileID: 1777002791}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1258954167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1258954169}
+  - component: {fileID: 1258954168}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1258954168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258954167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a086367c107d6da46b0d81b96a531cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicVolume: 0
+  _SFXVolume: 0
+  _volumeUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1258954169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258954167}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 529.18964, y: 234.40755, z: -1.9098358}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1288951426
 GameObject:
@@ -5821,6 +5891,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1847600991}
     - target: {fileID: 1355067676, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 62605237}
+    - target: {fileID: 1355067676, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: <PatrolPointA>k__BackingField
       value: 
       objectReference: {fileID: 1038811338}
@@ -6001,6 +6075,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1847600991}
+    - target: {fileID: 1355067676, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 62605237}
     - target: {fileID: 1355067676, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: <PatrolPointA>k__BackingField
       value: 

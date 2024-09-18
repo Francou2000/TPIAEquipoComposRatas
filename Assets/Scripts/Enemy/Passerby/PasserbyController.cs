@@ -37,6 +37,9 @@ public class PasserbyController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
     public float WaitTimer { get; set; }
     public bool DoneWaiting { get; set; }
 
+    public AudioSource _audioSource;
+    public DynamicBackgroundMusic _backgroundMusic;
+
     private void Start()
     {
         InitializedSteering();
@@ -64,7 +67,7 @@ public class PasserbyController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
         IMove entityMove = GetComponent<IMove>();
 
         var idle = new EnemyIdleState(this);
-        var chase = new EnemySteeringState(entityMove, _steering, this, los, alertedLos, alertedLosAngle);
+        var chase = new EnemySteeringState(entityMove, _steering, this, los, alertedLos, alertedLosAngle, _audioSource, _backgroundMusic);
         var patrol = new EnemyPatrolState(entityMove, transform, this, this, los, idleLos, idleLosAngle);
 
         idle.AddTransition(StateEnum.Chase, chase);

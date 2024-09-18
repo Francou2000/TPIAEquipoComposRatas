@@ -25,7 +25,10 @@ public class EnemyChaseState : State<StateEnum>
 
         _audioSource.Play();
 
-        _music.SwitchToDangerMusic();
+        if (_music != null)
+        {
+            _music.SwitchToDangerMusic();
+        }
     }
 
     public override void Execute()
@@ -44,6 +47,9 @@ public class EnemyChaseState : State<StateEnum>
     { 
         base.Exit();
 
-        _music.SwitchToNormalMusic();
+        if (_music != null)
+        {
+            _music.SwitchToNormalMusic();
+        }
     }
 }
