@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DropZone : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class DropZone : MonoBehaviour
 
     public AudioSource _audioSource;
     public AudioClip _moneySound;
+
+    public PlayerPoints playerPointsScript;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,6 +27,8 @@ public class DropZone : MonoBehaviour
             if (lootableItem != null )
             {
                 _playerPoints += lootableItem._itemValue;
+
+                playerPointsScript.AddPoints(_playerPoints);
 
                 Destroy(droppedItem);
 
