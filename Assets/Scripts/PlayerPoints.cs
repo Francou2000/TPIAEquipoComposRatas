@@ -21,7 +21,7 @@ public class PlayerPoints : MonoBehaviour
 
     void UpdatePointsUI()
     {
-        pointsText.text = "Points: " + playerPoints.ToString();
+        pointsText.text = "Money: " + playerPoints.ToString();
     }
 }
 
