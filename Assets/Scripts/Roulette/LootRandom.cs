@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro; 
 
 public class LootRandom : MonoBehaviour
 {
     public DataBase dataBase;
     public List<RarityInfo> infos;
     public Transform spawnPoint;  
+    public TextMeshProUGUI timerText;  
 
     Dictionary<RarirtyEnum, float> _items;
     Dictionary<RarirtyEnum, float> _baseWeights;
 
     private float _averageTime = 90f;
-
     private float _timeElapsed;             
     private bool _timerActive = false;      
     private PlayerInventory _inventory;    
@@ -22,15 +22,13 @@ public class LootRandom : MonoBehaviour
     private void Awake()
     {
         _baseWeights = new Dictionary<RarirtyEnum, float>
-    {
-        { RarirtyEnum.C, 10f },  
-        { RarirtyEnum.R, 5f },  
-        { RarirtyEnum.SR, 1f }  
-    };
+        {
+            { RarirtyEnum.C, 10f },  
+            { RarirtyEnum.R, 5f },  
+            { RarirtyEnum.SR, 1f }  
+        };
 
         _items = new Dictionary<RarirtyEnum, float>(_baseWeights);
-
-        _items = new Dictionary<RarirtyEnum, float>();
         _inventory = FindObjectOfType<PlayerInventory>();  
         ResetWeights();
     }
@@ -41,6 +39,7 @@ public class LootRandom : MonoBehaviour
         {
             _timerActive = true;
             _timeElapsed = 0f;
+            ResetWeights();
         }
 
         if (_timerActive && _inventory._hasItem)
@@ -52,6 +51,17 @@ public class LootRandom : MonoBehaviour
         if (_timerActive)
         {
             _timeElapsed += Time.deltaTime;
+            UpdateTimerUI();  
+        }
+    }
+
+    private void UpdateTimerUI()
+    {
+        if (timerText != null)
+        {
+            
+            TimeSpan timeSpan = TimeSpan.FromSeconds(_timeElapsed);
+            timerText.text = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
         }
     }
 
@@ -67,7 +77,6 @@ public class LootRandom : MonoBehaviour
         if (!dataBase.items.ContainsKey(rarity)) return null;
 
         GameObject[] items = dataBase.items[rarity];
-
         int randomIndex = UnityEngine.Random.Range(0, items.Length);
         GameObject selectedItem = items[randomIndex];
 
@@ -82,6 +91,7 @@ public class LootRandom : MonoBehaviour
 
         return spawnedItem;
     }
+
     private void AdjustWeightsBasedOnTime(float timeTaken)
     {
         float speedFactor = Mathf.Clamp(_averageTime / timeTaken, 0.1f, 2f);
@@ -92,15 +102,15 @@ public class LootRandom : MonoBehaviour
 
             if (rarity == RarirtyEnum.SR)
             {
-                _items[rarity] = Mathf.Lerp(baseWeight * 0.5f, baseWeight * 2f, speedFactor);
+                _items[rarity] = Mathf.Lerp(baseWeight * 0.5f, baseWeight * 10f, speedFactor);
             }
             else if (rarity == RarirtyEnum.R)
             {
-                _items[rarity] = Mathf.Lerp(baseWeight * 0.75f, baseWeight * 1.5f, speedFactor);
+                _items[rarity] = Mathf.Lerp(baseWeight * 0.75f, baseWeight * 2f, speedFactor);
             }
             else if (rarity == RarirtyEnum.C)
             {
-                _items[rarity] = Mathf.Lerp(baseWeight * 2f, baseWeight * 0.5f, speedFactor);
+                _items[rarity] = Mathf.Lerp(baseWeight * 2f, baseWeight * 0.1f, speedFactor);
             }
         }
     }
