@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Constants : MonoBehaviour
+public class Constants
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public const float nearNodeDistance = 3;
+    public static LayerMask obsMask = LayerMask.GetMask("Wall");
+    public static LayerMask nodeMask = LayerMask.GetMask("Node");
 }
