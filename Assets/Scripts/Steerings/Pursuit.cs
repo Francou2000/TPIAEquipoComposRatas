@@ -17,6 +17,7 @@ public class Pursuit : ISteering
 
     public Vector3 GetDir()
     {
+        if (_target) return Vector3.zero;
         Vector3 point = _target.position + _target.transform.forward * _target.velocity.magnitude * _timePrediction;
         Vector3 dirToPoint = (point - _entity.position).normalized;
         Vector3 dirToTarget = (_target.position - _entity.position).normalized;
@@ -32,6 +33,7 @@ public class Pursuit : ISteering
 
     public Vector3 GetPoint()
     {
+        if (_target) return Vector3.zero;
         Vector3 point = _target.position + _target.transform.forward * _target.velocity.magnitude * _timePrediction;
         Vector3 dirToPoint = (point - _entity.position).normalized;
         Vector3 dirToTarget = (_target.position - _entity.position).normalized;

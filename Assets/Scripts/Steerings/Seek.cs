@@ -14,11 +14,13 @@ public class Seek : ISteering
 
     public virtual Vector3 GetDir()
     {
+        if (_target) return Vector3.zero;
         return (_target.position - _entity.position).normalized;
     }
 
     public virtual Vector3 GetPoint()
     {
+        if (_target) return Vector3.zero;
         return (_target.position - _entity.position);
     }
     

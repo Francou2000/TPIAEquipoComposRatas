@@ -11,13 +11,16 @@ public class FlockingManager : MonoBehaviour, ISteering
     List<IBoid> _boids;
     IBoid _self;
     IFlockingBehaviour[] _behaviours;
+    public LeaderBehaviour Leader;
     private void Awake()
     {
         _colls = new Collider[maxBoids];
         _self = GetComponent<IBoid>();
         _behaviours = GetComponents<IFlockingBehaviour>();
         _boids = new List<IBoid>(maxBoids);
+        Leader = GetComponent<LeaderBehaviour>();
     }
+    
     public Vector3 GetDir()
     {
         _boids.Clear();
@@ -34,7 +37,8 @@ public class FlockingManager : MonoBehaviour, ISteering
         {
             dir += _behaviours[i].GetDir(_boids, _self);
         }
-
+        
+        //Debug.Log("Boids: " + _boids.Count + ". Behaviours: " + _behaviours.Length);
         return dir.normalized;
     }
 

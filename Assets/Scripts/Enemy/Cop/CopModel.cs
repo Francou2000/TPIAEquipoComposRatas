@@ -6,7 +6,7 @@ using static UnityEngine.UI.Image;
 using UnityEngine.SocialPlatforms;
 using static UnityEditor.Progress;
 
-public class CopModel : Entity, IAttack
+public class CopModel : Entity, IAttack, IBoid
 {
     public LayerMask attackMask;
     [SerializeField]
@@ -87,4 +87,7 @@ public class CopModel : Entity, IAttack
         yield return new WaitForSeconds(.5f);
         _scenesManagament.LoadScene("Defeat");
     }
+    
+    public Vector3 Position => transform.position;
+    public Vector3 Forward => transform.forward;
 }

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPathfindChaseState<StateEnum> : StateFollowPoints<StateEnum>
+public class EnemyChaseFlockingState<StateEnum> : State<StateEnum>
 {
     private LineOfSight _los;
     private float _alertedLos;
     private float _alertedLosAngle;
     IMove _move;
-    ISteering _steering;
+    private FlockingManager _flocking;
     private IAlert _alert;
     public Node start;
     public Node goal;
@@ -16,10 +16,10 @@ public class EnemyPathfindChaseState<StateEnum> : StateFollowPoints<StateEnum>
     AudioSource _audioSource;
     DynamicBackgroundMusic _music;
 
-    public EnemyPathfindChaseState(Transform entity, IMove move, ISteering steering, IAlert alert, LineOfSight los, float alertedLos, float alertedLosAngle, AudioSource audioSource, DynamicBackgroundMusic music, float distanceToPoint = 0.2F) : base(entity, distanceToPoint, move)
+    public EnemyChaseFlockingState(Transform entity, IMove move, FlockingManager flocking, IAlert alert, LineOfSight los, float alertedLos, float alertedLosAngle, AudioSource audioSource, DynamicBackgroundMusic music, float distanceToPoint = 0.2F)
     {
         _move = move;
-        _steering = steering;
+        _flocking = flocking;
         _los = los;
         _alertedLos = alertedLos;
         _alertedLosAngle = alertedLosAngle;
@@ -43,16 +43,19 @@ public class EnemyPathfindChaseState<StateEnum> : StateFollowPoints<StateEnum>
             _music.SwitchToDangerMusic();
         }
         
-        SetPathAStar();
+        _flocking.Leader.SetPathAStar();
     }
     
     public override void Execute()
     {
-        base.Execute();
-        SetPathAStar();
-        //deprecated: ahora el movimiento está en StateFollowPoints
-        //Vector3 dir = _steering.GetPoint();
-        //_move.Move(dir.normalized);
+        base.Execute(); 
+        
+        if (_flocking == null) return;
+        var dir = _flocking.GetDir();
+        _move.Move(dir);
+        _move.Look(dir);
+        
+        _flocking.Leader.SetPathAStar();
         _alert.AlertedTimer += Time.deltaTime;
     }
 
@@ -66,7 +69,7 @@ public class EnemyPathfindChaseState<StateEnum> : StateFollowPoints<StateEnum>
         }
     }
     
-    public void SetPathAStar()
+    /*public void SetPathAStar()
     {
         var start = GetNearNode(_entity.position);
         
@@ -138,5 +141,5 @@ public class EnemyPathfindChaseState<StateEnum> : StateFollowPoints<StateEnum>
     List<Node> GetConnections(Node current)
     {
         return current.neightbourds;
-    }
+    }*/
 }
