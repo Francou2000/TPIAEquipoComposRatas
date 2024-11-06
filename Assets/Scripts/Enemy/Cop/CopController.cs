@@ -120,13 +120,14 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
 
         var qDistance = new QuestionTree(InAttackRange, attack, chase);
         var qHasArrived = new QuestionTree(_HasArrived, idle, patrol);
-        var qDoneWaiting = new QuestionTree(() => DoneWaiting, qHasArrived, idle);
-        var qAlertPasserbyInView = new QuestionTree(AlertPasserbyInView, chase, qDoneWaiting);
+        //var qDoneWaiting = new QuestionTree(() => DoneWaiting, qHasArrived, idle);
+        var qFollowPoints = new QuestionTree(() => _statePathfinding.IsFinishPath, idle, follow);
+        var qAlertPasserbyInView = new QuestionTree(AlertPasserbyInView, chase, qFollowPoints);
+        //var qAlertPasserbyInView = new QuestionTree(AlertPasserbyInView, chase, qDoneWaiting);
         var qAlreadyAlert = new QuestionTree(IsAlreadyAlert, qDistance, qAlertPasserbyInView);
         var qInView = new QuestionTree(InView, qDistance, qAlreadyAlert);
-        var qIsExist = new QuestionTree(() => target != null, qInView, qDoneWaiting);
-
-        var qFollowPoints = new QuestionTree(() => _statePathfinding.IsFinishPath, idle, follow);
+        var qIsExist = new QuestionTree(() => target != null, qInView, qFollowPoints);
+        //var qIsExist = new QuestionTree(() => target != null, qInView, qDoneWaiting);
 
         _root = qIsExist;
     }

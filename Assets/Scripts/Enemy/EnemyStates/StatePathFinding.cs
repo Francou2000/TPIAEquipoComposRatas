@@ -24,10 +24,12 @@ public class StatePathfinding<T> : StateFollowPoints<T>
         _move.Move(dir);
         _move.Look(dir);
     }
+
     protected override void OnStartPath()
     {
         base.OnStartPath();
     }
+
     protected override void OnFinishPath()
     {
         base.OnFinishPath();
