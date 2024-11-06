@@ -42,6 +42,7 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
     List<IAlert> _passersbyAlerts = new List<IAlert>();
 
     StatePathfinding<StateEnum> _statePathfinding;
+    private EnemyPathfindChaseState<StateEnum> _stateChasePF;
 
     public AudioSource _audioSource;
     public DynamicBackgroundMusic _backgroundMusic;
@@ -80,35 +81,42 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
         _entityAttack = GetComponent<IAttack>();
 
         var idle = new EnemyIdleState(this);
-        var chase = new EnemySteeringState(entityMove, _steering, this, los, alertedLos, alertedLosAngle, _audioSource, _backgroundMusic);
+        //var chase = new EnemySteeringState(entityMove, _steering, this, los, alertedLos, alertedLosAngle, _audioSource, _backgroundMusic);
         var patrol = new EnemyPatrolState(entityMove, transform, this, this, los, idleLos, idleLosAngle);
         var attack = new EnemyAttackState(_entityAttack);
-        _statePathfinding = new StatePathfinding<StateEnum>(this.transform, entityMove);
+        //_statePathfinding = new StatePathfinding<StateEnum>(this.transform, entityMove);
+        _stateChasePF = new EnemyPathfindChaseState<StateEnum>(this.transform, entityMove, _steering, this, los,
+            alertedLos, alertedLosAngle, _audioSource, _backgroundMusic);
 
         idle.AddTransition(StateEnum.Attack, attack);
-        idle.AddTransition(StateEnum.Chase, chase);
+        idle.AddTransition(StateEnum.Chase, _stateChasePF);
         idle.AddTransition(StateEnum.Patrol, patrol);
-        idle.AddTransition(StateEnum.Waypoints, _statePathfinding);
+        //idle.AddTransition(StateEnum.Waypoints, _statePathfinding);
 
-        chase.AddTransition(StateEnum.Attack, attack);
-        chase.AddTransition(StateEnum.Idle, idle);
-        chase.AddTransition(StateEnum.Patrol, patrol);
-        chase.AddTransition(StateEnum.Waypoints, _statePathfinding);
+        //chase.AddTransition(StateEnum.Attack, attack);
+        //chase.AddTransition(StateEnum.Idle, idle);
+        //chase.AddTransition(StateEnum.Patrol, patrol);
+        //chase.AddTransition(StateEnum.Waypoints, _statePathfinding);
 
-        attack.AddTransition(StateEnum.Chase, chase);
+        attack.AddTransition(StateEnum.Chase, _stateChasePF);
         attack.AddTransition(StateEnum.Idle, idle);
         attack.AddTransition(StateEnum.Patrol, patrol);
-        attack.AddTransition(StateEnum.Waypoints, _statePathfinding);
+        //attack.AddTransition(StateEnum.Waypoints, _statePathfinding);
         
         patrol.AddTransition(StateEnum.Attack, attack);
-        patrol.AddTransition(StateEnum.Chase, chase);
+        patrol.AddTransition(StateEnum.Chase, _stateChasePF);
         patrol.AddTransition(StateEnum.Idle, idle);
-        patrol.AddTransition(StateEnum.Waypoints, _statePathfinding);
+        //patrol.AddTransition(StateEnum.Waypoints, _statePathfinding);
 
-        _statePathfinding.AddTransition(StateEnum.Attack, attack);
-        _statePathfinding.AddTransition(StateEnum.Chase, chase);
-        _statePathfinding.AddTransition(StateEnum.Idle, idle);
-        _statePathfinding.AddTransition(StateEnum.Patrol, patrol);
+        //_statePathfinding.AddTransition(StateEnum.Attack, attack);
+        //_statePathfinding.AddTransition(StateEnum.Chase, chase);
+        //_statePathfinding.AddTransition(StateEnum.Idle, idle);
+        //_statePathfinding.AddTransition(StateEnum.Patrol, patrol);
+        
+        _stateChasePF.AddTransition(StateEnum.Attack, attack);
+        _stateChasePF.AddTransition(StateEnum.Idle, idle);
+        _stateChasePF.AddTransition(StateEnum.Patrol, patrol);
+        //_stateChasePF.AddTransition(StateEnum.Waypoints, _statePathfinding);
 
         _fsm = new FSM<StateEnum>(idle);
     }
@@ -123,14 +131,14 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
 
         var qDistance = new QuestionTree(InAttackRange, attack, chase);
         var qHasArrived = new QuestionTree(_HasArrived, idle, patrol);
-        //var qDoneWaiting = new QuestionTree(() => DoneWaiting, qHasArrived, idle);
-        var qFollowPoints = new QuestionTree(() => _statePathfinding.IsFinishPath, idle, follow);
-        var qAlertPasserbyInView = new QuestionTree(AlertPasserbyInView, chase, qFollowPoints);
-        //var qAlertPasserbyInView = new QuestionTree(AlertPasserbyInView, chase, qDoneWaiting);
+        var qDoneWaiting = new QuestionTree(() => DoneWaiting, qHasArrived, idle);
+        //var qFollowPoints = new QuestionTree(() => _statePathfinding.IsFinishPath, idle, follow);
+        //var qAlertPasserbyInView = new QuestionTree(AlertPasserbyInView, chase, qFollowPoints);
+        var qAlertPasserbyInView = new QuestionTree(AlertPasserbyInView, chase, qDoneWaiting);
         var qAlreadyAlert = new QuestionTree(IsAlreadyAlert, qDistance, qAlertPasserbyInView);
         var qInView = new QuestionTree(InView, qDistance, qAlreadyAlert);
-        var qIsExist = new QuestionTree(() => target != null, qInView, qFollowPoints);
-        //var qIsExist = new QuestionTree(() => target != null, qInView, qDoneWaiting);
+        //var qIsExist = new QuestionTree(() => target != null, qInView, qFollowPoints);
+        var qIsExist = new QuestionTree(() => target != null, qInView, qDoneWaiting);
 
         _root = qIsExist;
     }
@@ -172,7 +180,7 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
     bool _HasArrived()
     {
         //Chequeo haber llegado al punto de patrulla de forma aproximada
-        Debug.Log(AlmostEqual(transform.position, CurrentTarget.position, 0.05f));
+        //Debug.Log(AlmostEqual(transform.position, CurrentTarget.position, 0.05f));
         return AlmostEqual(transform.position, CurrentTarget.position, 0.05f);
     }
     
@@ -204,8 +212,9 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
 
     public void RePathAstar()
     {
-        _statePathfinding.start = start;
-        _statePathfinding.goal = goal;
-        _statePathfinding.SetPathAStar();
+        _stateChasePF.start = start;
+        _stateChasePF.goal = goal;
+        //_stateChasePF.target = target;
+        _stateChasePF.SetPathAStar();
     }
 }

@@ -16,4 +16,21 @@ public class Seek : ISteering
     {
         return (_target.position - _entity.position).normalized;
     }
+
+    public virtual Vector3 GetPoint()
+    {
+        return (_target.position - _entity.position);
+    }
+    
+    public Transform Target
+    {
+        get
+        {
+            return _target;
+        }
+        set
+        {
+            _target = value;
+        }
+    }
 }

@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ISteering
+public interface IBoid
 {
-    Vector3 GetDir();
-    Vector3 GetPoint();
+    Vector3 Position { get; }
+    Vector3 Forward { get; }
 }

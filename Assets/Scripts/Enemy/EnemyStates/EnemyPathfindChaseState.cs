@@ -2,47 +2,80 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatePathfinding<T> : StateFollowPoints<T>
+public class EnemyPathfindChaseState<StateEnum> : StateFollowPoints<StateEnum>
 {
+    private LineOfSight _los;
+    private float _alertedLos;
+    private float _alertedLosAngle;
     IMove _move;
+    ISteering _steering;
+    private IAlert _alert;
     public Node start;
     public Node goal;
 
-    public StatePathfinding(Transform entity, IMove move, float distanceToPoint = 0.2F) : base(entity, distanceToPoint, move)
+    AudioSource _audioSource;
+    DynamicBackgroundMusic _music;
+
+    public EnemyPathfindChaseState(Transform entity, IMove move, ISteering steering, IAlert alert, LineOfSight los, float alertedLos, float alertedLosAngle, AudioSource audioSource, DynamicBackgroundMusic music, float distanceToPoint = 0.2F) : base(entity, distanceToPoint, move)
     {
         _move = move;
+        _steering = steering;
+        _los = los;
+        _alertedLos = alertedLos;
+        _alertedLosAngle = alertedLosAngle;
+        _alert = alert;
+        _audioSource = audioSource;
+        _music = music;
     }
 
-    protected override void OnMove(Vector3 dir)
+    public override void Enter()
     {
-        base.OnMove(dir);
-        _move.Move(dir);
-        _move.Look(dir);
+        _los.range = _alertedLos;
+        _los.angle = _alertedLosAngle;
+        _alert.IsAlerted = true;
+        //actualizo el LoS
+
+        _audioSource.Play();
+
+        if (_music != null)
+        {
+            _music.SwitchToDangerMusic();
+        }
+        
+        SetPathAStar();
+    }
+    
+    public override void Execute()
+    {
+        base.Execute();
+        SetPathAStar();
+        //deprecated: ahora el movimiento está en StateFollowPoints
+        //Vector3 dir = _steering.GetPoint();
+        //_move.Move(dir.normalized);
+        _alert.AlertedTimer += Time.deltaTime;
     }
 
-    protected override void OnStartPath()
+    public override void Exit()
     {
-        base.OnStartPath();
-    }
+        base.Exit();
 
-    protected override void OnFinishPath()
-    {
-        base.OnFinishPath();
+        if (_music != null)
+        {
+            _music.SwitchToNormalMusic();
+        }
     }
     
     public void SetPathAStar()
     {
         var start = GetNearNode(_entity.position);
+        
+        //Uso el pursuit para determinar donde va a estar el objetivo
+        goal = GetNearNode(_steering.GetPoint());
+        
         List<Node> path = ASTAR.Run<Node>(start, IsSatisfies, GetConnections, GetCost, Heuristic);
         if (path.Count <= 0) return;
         SetWaypoints(GetPathVector(path));
     }
-    
-    Vector3 GetPoint(Vector3 point)
-    {
-        return Vector3Int.RoundToInt(point);
-    }
-    
     Node GetNearNode(Vector3 pos)
     {
         var colls = Physics.OverlapSphere(pos, Constants.nearNodeDistance, Constants.nodeMask);
@@ -65,7 +98,6 @@ public class StatePathfinding<T> : StateFollowPoints<T>
         }
         return nearNode;
     } 
-
     float Heuristic(Node node)
     {
         float h = 0;

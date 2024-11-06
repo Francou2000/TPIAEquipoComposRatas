@@ -7,8 +7,15 @@ public class Flee : Seek
     public Flee(Transform entity, Transform target) : base(entity, target)
     {
     }
+
     public override Vector3 GetDir()
     {
         return -base.GetDir();
     }
+
+    public override Vector3 GetPoint()
+    {
+        return -base.GetPoint();
+    }
+
 }
