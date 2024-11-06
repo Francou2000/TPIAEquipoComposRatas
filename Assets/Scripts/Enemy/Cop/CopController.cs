@@ -41,6 +41,8 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
     List<Rigidbody> _passersbyrb = new List<Rigidbody>();
     List<IAlert> _passersbyAlerts = new List<IAlert>();
 
+    StatePathfinding<StateEnum> _statePathfinding;
+
     public AudioSource _audioSource;
     public DynamicBackgroundMusic _backgroundMusic;
 
@@ -78,22 +80,32 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
         var chase = new EnemySteeringState(entityMove, _steering, this, los, alertedLos, alertedLosAngle, _audioSource, _backgroundMusic);
         var patrol = new EnemyPatrolState(entityMove, transform, this, this, los, idleLos, idleLosAngle);
         var attack = new EnemyAttackState(_entityAttack);
+        _statePathfinding = new StatePathfinding<StateEnum>(this.transform, entityMove);
 
         idle.AddTransition(StateEnum.Attack, attack);
         idle.AddTransition(StateEnum.Chase, chase);
         idle.AddTransition(StateEnum.Patrol, patrol);
+        idle.AddTransition(StateEnum.Waypoints, _statePathfinding);
 
         chase.AddTransition(StateEnum.Attack, attack);
         chase.AddTransition(StateEnum.Idle, idle);
         chase.AddTransition(StateEnum.Patrol, patrol);
+        chase.AddTransition(StateEnum.Waypoints, _statePathfinding);
 
         attack.AddTransition(StateEnum.Chase, chase);
         attack.AddTransition(StateEnum.Idle, idle);
         attack.AddTransition(StateEnum.Patrol, patrol);
+        attack.AddTransition(StateEnum.Waypoints, _statePathfinding);
         
         patrol.AddTransition(StateEnum.Attack, attack);
         patrol.AddTransition(StateEnum.Chase, chase);
         patrol.AddTransition(StateEnum.Idle, idle);
+        patrol.AddTransition(StateEnum.Waypoints, _statePathfinding);
+
+        _statePathfinding.AddTransition(StateEnum.Attack, attack);
+        _statePathfinding.AddTransition(StateEnum.Chase, chase);
+        _statePathfinding.AddTransition(StateEnum.Idle, idle);
+        _statePathfinding.AddTransition(StateEnum.Patrol, patrol);
 
         _fsm = new FSM<StateEnum>(idle);
     }
@@ -104,6 +116,7 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
         var chase = new ActionTree(() => _fsm.Transition(StateEnum.Chase));
         var attack = new ActionTree(() => _fsm.Transition(StateEnum.Attack));
         var patrol = new ActionTree(() => _fsm.Transition(StateEnum.Patrol));
+        var follow = new ActionTree(() => _fsm.Transition(StateEnum.Waypoints));
 
         var qDistance = new QuestionTree(InAttackRange, attack, chase);
         var qHasArrived = new QuestionTree(_HasArrived, idle, patrol);
@@ -112,6 +125,8 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
         var qAlreadyAlert = new QuestionTree(IsAlreadyAlert, qDistance, qAlertPasserbyInView);
         var qInView = new QuestionTree(InView, qDistance, qAlreadyAlert);
         var qIsExist = new QuestionTree(() => target != null, qInView, qDoneWaiting);
+
+        var qFollowPoints = new QuestionTree(() => _statePathfinding.IsFinishPath, idle, follow);
 
         _root = qIsExist;
     }
