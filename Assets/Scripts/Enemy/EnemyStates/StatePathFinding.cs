@@ -5,15 +5,10 @@ using UnityEngine;
 public class StatePathfinding<T> : StateFollowPoints<T>
 {
     IMove _move;
-    Animator _anim;
     public Node start;
     public Node goal;
-    public Transform target;
+
     public StatePathfinding(Transform entity, IMove move, float distanceToPoint = 0.2F) : base(entity, distanceToPoint)
-    {
-        _move = move;
-    }
-    public StatePathfinding(Transform entity, IMove move, List<Vector3> waypoints, float distanceToPoint = 0.2f) : base(entity, waypoints, distanceToPoint)
     {
         _move = move;
     }
@@ -38,7 +33,6 @@ public class StatePathfinding<T> : StateFollowPoints<T>
     public void SetPathAStar()
     {
         var start = GetNearNode(_entity.position);
-        goal = GetNearNode(target.position);
         List<Node> path = ASTAR.Run<Node>(start, IsSatisfies, GetConnections, GetCost, Heuristic);
         if (path.Count <= 0) return;
         SetWaypoints(GetPathVector(path));

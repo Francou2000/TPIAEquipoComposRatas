@@ -6,10 +6,12 @@ public class Entity : MonoBehaviour, IMove
 {
     Rigidbody _rb;
     public float speed;
+
     protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
+
     public virtual void Move(Vector3 dir)
     {
         dir = dir.normalized;
@@ -17,10 +19,12 @@ public class Entity : MonoBehaviour, IMove
         dir.y = _rb.velocity.y;
         _rb.velocity = dir;
     }
+
     public void Look(Vector3 dir)
     {
         transform.forward = dir;
     }
+
     public void Look(Transform target)
     {
         Vector3 dir = target.position - transform.position;

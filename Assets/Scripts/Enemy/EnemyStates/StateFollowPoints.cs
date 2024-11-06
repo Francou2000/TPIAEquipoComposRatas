@@ -9,17 +9,11 @@ public class StateFollowPoints<T> : State<T>
     protected Transform _entity;
     float _distanceToPoint = 0.2f;
     bool _isFinishPath;
+     
     public StateFollowPoints(Transform entity, float distanceToPoint = 0.2f)
     {
         _entity = entity;
         _distanceToPoint = distanceToPoint;
-        _isFinishPath = true;
-    }
-    public StateFollowPoints(Transform entity, List<Vector3> waypoints, float distanceToPoint = 0.2f)
-    {
-        _entity = entity;
-        _distanceToPoint = distanceToPoint;
-        _waypoints = waypoints;
         _isFinishPath = true;
     }
 
@@ -28,6 +22,7 @@ public class StateFollowPoints<T> : State<T>
         base.Execute();
         Run();
     }
+
     public void SetWaypoints(List<Vector3> newPoints)
     {
         if (newPoints.Count == 0) return;
@@ -36,6 +31,7 @@ public class StateFollowPoints<T> : State<T>
         _isFinishPath = false;
         OnStartPath();
     }
+
     void Run()
     {
         if (_isFinishPath) return;
@@ -55,17 +51,21 @@ public class StateFollowPoints<T> : State<T>
         }
         OnMove(dir.normalized);
     }
+
     protected virtual void OnMove(Vector3 dir)
     {
 
     }
+
     protected virtual void OnStartPath()
     {
 
     }
+
     protected virtual void OnFinishPath()
     {
 
     }
+
     public bool IsFinishPath => _isFinishPath;
 }

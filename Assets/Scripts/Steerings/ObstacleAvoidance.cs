@@ -50,7 +50,7 @@ public class ObstacleAvoidance
 
         if (nearColl == null)
         {
-            Debug.Log(currDir);
+            //Debug.Log(currDir);
             return currDir;
         }
 

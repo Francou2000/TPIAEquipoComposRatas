@@ -46,6 +46,9 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
     public AudioSource _audioSource;
     public DynamicBackgroundMusic _backgroundMusic;
 
+    public Node start;
+    public Node goal;
+
     private void Start()
     {
         InitializedSteering();
@@ -196,5 +199,12 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
         if (Mathf.Abs (v1.z - v2.z) > precision) equal = false;
 		
         return equal;
+    }
+
+    public void RePathAstar()
+    {
+        _statePathfinding.start = start;
+        _statePathfinding.goal = goal;
+        _statePathfinding.SetPathAStar();
     }
 }
