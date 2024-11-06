@@ -180,6 +180,7 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
     {
         _fsm.OnUpdate();
         _root.Execute();
+        Debug.Log(_fsm.ToString());
     }
     private void FixedUpdate()
     {

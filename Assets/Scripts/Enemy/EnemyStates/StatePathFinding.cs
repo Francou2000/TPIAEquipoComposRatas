@@ -8,7 +8,7 @@ public class StatePathfinding<T> : StateFollowPoints<T>
     public Node start;
     public Node goal;
 
-    public StatePathfinding(Transform entity, IMove move, float distanceToPoint = 0.2F) : base(entity, distanceToPoint)
+    public StatePathfinding(Transform entity, IMove move, float distanceToPoint = 0.2F) : base(entity, distanceToPoint, move)
     {
         _move = move;
     }

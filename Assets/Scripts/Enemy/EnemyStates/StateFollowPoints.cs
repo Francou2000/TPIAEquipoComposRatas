@@ -9,12 +9,14 @@ public class StateFollowPoints<T> : State<T>
     protected Transform _entity;
     float _distanceToPoint = 0.2f;
     bool _isFinishPath;
+    IMove _move; 
      
-    public StateFollowPoints(Transform entity, float distanceToPoint = 0.2f)
+    public StateFollowPoints(Transform entity, float distanceToPoint = 0.2f, IMove move = null)
     {
         _entity = entity;
         _distanceToPoint = distanceToPoint;
         _isFinishPath = true;
+        _move = move;
     }
 
     public override void Execute()
@@ -49,7 +51,10 @@ public class StateFollowPoints<T> : State<T>
                 return;
             }
         }
-        OnMove(dir.normalized);
+
+        _move.Move(dir.normalized);
+
+       // OnMove(dir.normalized);
     }
 
     protected virtual void OnMove(Vector3 dir)
