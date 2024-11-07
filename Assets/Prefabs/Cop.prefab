@@ -222,13 +222,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  timePrediction: 3
+  timePrediction: 1.5
   los: {fileID: 408830583}
   idleLos: 10
   alertedLos: 12
   idleLosAngle: 160
   alertedLosAngle: 160
-  <AlertedTime>k__BackingField: 3
+  <AlertedTime>k__BackingField: 10
   <PatrolPointA>k__BackingField: {fileID: 0}
   <PatrolPointB>k__BackingField: {fileID: 0}
   <WaitTime>k__BackingField: 4

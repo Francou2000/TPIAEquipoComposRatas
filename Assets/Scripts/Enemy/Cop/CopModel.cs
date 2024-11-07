@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.UI.Image;
 using UnityEngine.SocialPlatforms;
-using static UnityEditor.Progress;
 
 public class CopModel : Entity, IAttack, IBoid
 {
