@@ -10,6 +10,5 @@ public enum StateEnum
    Alert,
    Attack,
    Chase,
-   Patrol,
-   Waypoints
+   Patrol
 }
