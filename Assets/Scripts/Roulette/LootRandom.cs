@@ -100,17 +100,17 @@ public class LootRandom : MonoBehaviour
         {
             float baseWeight = _baseWeights[rarity];
 
-            if (rarity == RarirtyEnum.SR)
+            if (rarity == RarirtyEnum.SR)//speedFactor = 0.5
             {
-                _items[rarity] = Mathf.Lerp(baseWeight * 0.5f, baseWeight * 10f, speedFactor);
+                _items[rarity] = Mathf.Lerp(baseWeight * 0.5f, baseWeight * 10f, speedFactor); //100
             }
             else if (rarity == RarirtyEnum.R)
             {
-                _items[rarity] = Mathf.Lerp(baseWeight * 0.75f, baseWeight * 2f, speedFactor);
+                _items[rarity] = Mathf.Lerp(baseWeight * 0.75f, baseWeight * 2f, speedFactor);//50
             }
             else if (rarity == RarirtyEnum.C)
             {
-                _items[rarity] = Mathf.Lerp(baseWeight * 2f, baseWeight * 0.1f, speedFactor);
+                _items[rarity] = Mathf.Lerp(baseWeight * 2f, baseWeight * 0.1f, speedFactor);//25
             }
         }
     }

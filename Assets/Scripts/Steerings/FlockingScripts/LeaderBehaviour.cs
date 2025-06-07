@@ -65,7 +65,7 @@ public class LeaderBehaviour : MonoBehaviour, IFlockingBehaviour
         var start = GetNearNode(_entity.position);
         
         //Uso el pursuit para determinar donde va a estar el objetivo
-        goal = GetNearNode(_pursuit.GetPoint());
+        goal = GetNearNode(_pursuit.GetPoint());//<-
         
         List<Node> path = ASTAR.Run<Node>(start, IsSatisfies, GetConnections, GetCost, Heuristic);
         //Debug.Log("Nodos seteados: " + path.Count);
