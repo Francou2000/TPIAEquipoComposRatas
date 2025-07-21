@@ -6133,11 +6133,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EasyCopAmount: 4
-  MediumCopAmount: 6
-  HardCopAmount: 9
   EasyNpcAmount: 1
+  EasyCommonWeight: 10
+  EasyRareWeight: 5
+  EasySuperRareWeight: 1
+  MediumCopAmount: 6
   MediumNpcAmount: 2
+  MediumCommonWeight: 8
+  MediumRareWeight: 5
+  MediumSuperRareWeight: 3
+  HardCopAmount: 9
   HardNpcAmount: 3
+  HardCommonWeight: 5
+  HardRareWeight: 6
+  HardSuperRareWeight: 5
 --- !u!4 &1592841478
 Transform:
   m_ObjectHideFlags: 0

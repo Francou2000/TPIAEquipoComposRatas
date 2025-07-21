@@ -119,4 +119,17 @@ public class LootRandom : MonoBehaviour
     {
         _items = new Dictionary<RarirtyEnum, float>(_baseWeights);
     }
+
+    public void SetWeights(float commonWeight, float rareWeight, float superRareWeight)
+    {
+        _baseWeights = new Dictionary<RarirtyEnum, float>
+        {
+            { RarirtyEnum.C, commonWeight },  
+            { RarirtyEnum.R, rareWeight },  
+            { RarirtyEnum.SR, superRareWeight }  
+        };
+
+        _items = new Dictionary<RarirtyEnum, float>(_baseWeights);
+        ResetWeights();
+    }
 }

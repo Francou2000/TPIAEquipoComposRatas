@@ -22,13 +22,32 @@ public class DifficultyManager : MonoBehaviour
     private int _currentNpcAmount;
     private int _copsToDelete;
     private int _npcsToDelete;
+    private float _currentCommonWeight;
+    private float _currentRareWeight;
+    private float _currentSuperRareWeight;
 
+    
+    [Header("Easy Difficulty")]
     [SerializeField] private int EasyCopAmount;
-    [SerializeField] private int MediumCopAmount;
-    [SerializeField] private int HardCopAmount;
     [SerializeField] private int EasyNpcAmount;
+    [SerializeField] private float EasyCommonWeight;
+    [SerializeField] private float EasyRareWeight;
+    [SerializeField] private float EasySuperRareWeight;
+    
+    
+    [Header("Medium Difficulty")]
+    [SerializeField] private int MediumCopAmount;
     [SerializeField] private int MediumNpcAmount;
+    [SerializeField] private float MediumCommonWeight;
+    [SerializeField] private float MediumRareWeight;
+    [SerializeField] private float MediumSuperRareWeight;
+    
+    [Header("Hard Difficulty")]
+    [SerializeField] private int HardCopAmount;
     [SerializeField] private int HardNpcAmount;
+    [SerializeField] private float HardCommonWeight;
+    [SerializeField] private float HardRareWeight;
+    [SerializeField] private float HardSuperRareWeight;
     
     public static DifficultyManager Instance {get; private set;}
 
@@ -76,18 +95,30 @@ public class DifficultyManager : MonoBehaviour
             case Difficulty.easy:
                 _copsToDelete = Math.Max(_currentCopAmount - EasyCopAmount, 0);
                 _npcsToDelete = Math.Max(_currentNpcAmount - EasyNpcAmount, 0);
+                _currentCommonWeight = EasyCommonWeight;
+                _currentRareWeight = EasyRareWeight;
+                _currentSuperRareWeight = EasySuperRareWeight;
                 break;
             case Difficulty.medium:
                 _copsToDelete = Math.Max(_currentCopAmount - MediumCopAmount, 0);
                 _npcsToDelete = Math.Max(_currentNpcAmount - HardCopAmount, 0);
+                _currentCommonWeight = MediumCommonWeight;
+                _currentRareWeight = MediumRareWeight;
+                _currentSuperRareWeight = MediumSuperRareWeight;
                 break;
             case Difficulty.hard:
                 _copsToDelete = Math.Max(_currentCopAmount - HardCopAmount, 0);
                 _npcsToDelete = Math.Max(_currentNpcAmount - HardNpcAmount, 0);
+                _currentCommonWeight = HardCommonWeight;
+                _currentRareWeight = HardRareWeight;
+                _currentSuperRareWeight = HardSuperRareWeight;
                 break;
             default:
                 _copsToDelete = Math.Max(_currentCopAmount - EasyCopAmount, 0);
                 _npcsToDelete = Math.Max(_currentNpcAmount - EasyNpcAmount, 0);
+                _currentCommonWeight = EasyCommonWeight;
+                _currentRareWeight = EasyRareWeight;
+                _currentSuperRareWeight = EasySuperRareWeight;
                 break;
         }
 
@@ -106,5 +137,10 @@ public class DifficultyManager : MonoBehaviour
             Destroy(npcsList[index].gameObject);
             npcsList.RemoveAt(index);
         }
+        
+        FindObjectOfType<LootRandom>().SetWeights
+            (_currentCommonWeight, 
+            _currentRareWeight, 
+            _currentSuperRareWeight);
     }
 }
