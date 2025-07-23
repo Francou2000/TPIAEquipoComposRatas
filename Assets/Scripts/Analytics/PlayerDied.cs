@@ -9,7 +9,10 @@ public class PlayerDied : Unity.Services.Analytics.Event
         
     }
 
-    public string DeathPos {set {SetParameter("Death_pos", value);}}
+    public float PosXWhenDetected {set {SetParameter("Pos_X_when_detected", value);}}
+    public float PosYWhenDetected {set {SetParameter("Pos_Y_when_detected", value);}}
+    public float DeathPosX {set {SetParameter("Death_pos_X", value);}}
+    public float DeathPosY {set {SetParameter("Death_pos_Y", value);}}
     public string Difficulty {set {SetParameter("Difficulty", value);}}
-    public string KillerID{set {SetParameter("Killer_ID", value);}}
+    public string KillerID {set {SetParameter("Killer_ID", value);}}
 }
