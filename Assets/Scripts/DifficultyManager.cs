@@ -79,6 +79,11 @@ public class DifficultyManager : MonoBehaviour
         _currentDifficulty = Difficulty.hard;
     }
 
+    public Difficulty GetDifficulty()
+    {
+        return _currentDifficulty;
+    }
+
     public void ApplyDifficulty()
     {
         CopController[] cops = FindObjectsByType<CopController>(FindObjectsSortMode.None);

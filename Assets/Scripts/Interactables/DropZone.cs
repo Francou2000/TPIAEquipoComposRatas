@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,14 @@ public class DropZone : MonoBehaviour
 
     public PlayerPoints playerPointsScript;
 
+    private GameManager _gameManager;
+    private int _interactions = 0;
+
+    private void Start()
+    {
+        _gameManager = GameManager.Instance;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && _inventory._hasItem)
@@ -26,6 +35,8 @@ public class DropZone : MonoBehaviour
             LootableItem lootableItem = droppedItem.GetComponent<LootableItem>();
             if (lootableItem != null )
             {
+                _interactions++;
+                
                 _playerPoints += lootableItem._itemValue;
 
                 playerPointsScript.AddPoints(_playerPoints);
@@ -35,6 +46,8 @@ public class DropZone : MonoBehaviour
                 if ( _scenesManagement != null && _playerPoints >= 100)
                 {
                     _scenesManagement.LoadScene("Victory");
+                    _gameManager.Victory(_interactions);
+                    _gameManager.GameOver();
                 }
             }
         }

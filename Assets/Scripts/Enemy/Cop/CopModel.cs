@@ -15,6 +15,7 @@ public class CopModel : Entity, IAttack, IBoid
     Cooldown _attackCooldown;
     public AudioSource _audioSource;
     public AudioClip _attackSound;
+    public string CopID;
 
     public ScenesManagement _scenesManagament;
 
@@ -24,12 +25,19 @@ public class CopModel : Entity, IAttack, IBoid
     public float personalArea;
     public LayerMask obsMask;
     ObstacleAvoidance _obs;
+    private GameManager _gameManager;
 
     protected override void Awake()
     {
         base.Awake();
         _attackCooldown = new Cooldown(attackCooldownTime);
         _obs = new ObstacleAvoidance(transform, radius, angle, personalArea, obsMask);
+        
+    }
+
+    private void Start()
+    {
+        _gameManager = GameManager.Instance;
     }
 
     public float GetAttackRange => _attackOfSight.range;
@@ -82,6 +90,8 @@ public class CopModel : Entity, IAttack, IBoid
 
     private IEnumerator AttackRoutine(Collider item)
     {
+        _gameManager.Death(item.gameObject.transform.position.x, item.gameObject.transform.position.y, CopID);
+        _gameManager.GameOver();
         Destroy(item.gameObject);
         yield return new WaitForSeconds(.5f);
         _scenesManagament.LoadScene("Defeat");

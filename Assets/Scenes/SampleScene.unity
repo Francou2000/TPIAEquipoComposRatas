@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1257,6 +1257,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 967060328}
     - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: CopID
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: _scenesManagament
       value: 
       objectReference: {fileID: 1666367671}
@@ -1896,6 +1900,10 @@ PrefabInstance:
       propertyPath: <PatrolPointB>k__BackingField
       value: 
       objectReference: {fileID: 1265652857}
+    - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: CopID
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: _scenesManagament
       value: 
@@ -3793,6 +3801,10 @@ PrefabInstance:
       propertyPath: <PatrolPointB>k__BackingField
       value: 
       objectReference: {fileID: 1650688633}
+    - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: CopID
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: _scenesManagament
       value: 
@@ -7932,6 +7944,10 @@ PrefabInstance:
       propertyPath: <PatrolPointB>k__BackingField
       value: 
       objectReference: {fileID: 1138523952}
+    - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: CopID
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: _scenesManagament
       value: 
@@ -12729,6 +12745,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 492865655}
     - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: CopID
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: _scenesManagament
       value: 
       objectReference: {fileID: 1666367671}
@@ -13468,6 +13488,10 @@ PrefabInstance:
       propertyPath: <PatrolPointB>k__BackingField
       value: 
       objectReference: {fileID: 1631143056}
+    - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: CopID
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: _scenesManagament
       value: 
@@ -15585,6 +15609,10 @@ PrefabInstance:
       propertyPath: <PatrolPointB>k__BackingField
       value: 
       objectReference: {fileID: 1426858194}
+    - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: CopID
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: _scenesManagament
       value: 
@@ -22779,6 +22807,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 972505429}
     - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: CopID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: _scenesManagament
       value: 
       objectReference: {fileID: 1666367671}
@@ -23784,6 +23816,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1087581262}
     - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: CopID
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: _scenesManagament
       value: 
       objectReference: {fileID: 1666367671}
@@ -24307,6 +24343,10 @@ PrefabInstance:
       propertyPath: <PatrolPointB>k__BackingField
       value: 
       objectReference: {fileID: 760271395}
+    - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
+      propertyPath: CopID
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1355067678, guid: 5a3f266de59b5ac40b471ebb2d03e8d9, type: 3}
       propertyPath: _scenesManagament
       value: 

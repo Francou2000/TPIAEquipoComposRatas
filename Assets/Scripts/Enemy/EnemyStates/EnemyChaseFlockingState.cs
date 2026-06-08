@@ -12,12 +12,14 @@ public class EnemyChaseFlockingState<StateEnum> : State<StateEnum>
     private IAlert _alert;
     public Node start;
     public Node goal;
+    private Transform _target;
 
     AudioSource _audioSource;
     DynamicBackgroundMusic _music;
 
-    public EnemyChaseFlockingState(Transform entity, IMove move, FlockingManager flocking, IAlert alert, LineOfSight los, float alertedLos, float alertedLosAngle, AudioSource audioSource, DynamicBackgroundMusic music, float distanceToPoint = 0.2F)
+    public EnemyChaseFlockingState(Transform entity, Transform target, IMove move, FlockingManager flocking, IAlert alert, LineOfSight los, float alertedLos, float alertedLosAngle, AudioSource audioSource, DynamicBackgroundMusic music, float distanceToPoint = 0.2F)
     {
+        _target = target;
         _move = move;
         _flocking = flocking;
         _los = los;
@@ -37,6 +39,10 @@ public class EnemyChaseFlockingState<StateEnum> : State<StateEnum>
         //actualizo el LoS
 
         _audioSource.Play();
+        
+        GameManager.Instance.GotDetected();
+        GameManager.Instance.updateLatestDetectedPos(_target.position.x, _target.position.y);
+        Debug.Log("State confirma detección");
 
         if (_music != null)
         {
@@ -67,6 +73,8 @@ public class EnemyChaseFlockingState<StateEnum> : State<StateEnum>
         {
             _music.SwitchToNormalMusic();
         }
+        GameManager.Instance.updateLatestEscapedPos(_target.position.x, _target.position.y);
+        GameManager.Instance.Escaped();
     }
     
     /*public void SetPathAStar()

@@ -8,11 +8,16 @@ public class PlayerController : MonoBehaviour
     IMove _move;
     FSM<StateEnum> _fsm;
     public Transform _cameraTransform;
+    private float _timeSincePosUpdate;
+    private float _updateTimer = 5f;
+    GameManager _gameManager;
+    
 
     void Start()
     {
         _move = GetComponent<IMove>();
         InitializedFSM();
+        _gameManager = GameManager.Instance;
     }
 
     void InitializedFSM()
@@ -31,6 +36,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _fsm.OnUpdate();
+        if (_timeSincePosUpdate < _updateTimer)
+        {
+            _timeSincePosUpdate += Time.deltaTime;
+        }
+        else
+        {
+            _timeSincePosUpdate = 0f;
+            _gameManager.UpdatePosition(transform.position.x, transform.position.y);
+        }
     }
 
     private void FixedUpdate()

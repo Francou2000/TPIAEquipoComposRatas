@@ -50,6 +50,8 @@ public class EnemyChaseState : State<StateEnum>
         if (_music != null)
         {
             _music.SwitchToNormalMusic();
+            
         }
+        
     }
 }

@@ -82,7 +82,7 @@ public class CopController : MonoBehaviour, IWaitTimer, IPatrol, IAlert
         var idle = new EnemyIdleState(this);
         var patrol = new EnemyPatrolState(entityMove, transform, this, this, los, idleLos, idleLosAngle);
         var attack = new EnemyAttackState(_entityAttack);
-        _stateChaseFlocking = new EnemyChaseFlockingState<StateEnum>(this.transform, entityMove, GetComponent<FlockingManager>(), this, los,
+        _stateChaseFlocking = new EnemyChaseFlockingState<StateEnum>(this.transform, target.transform, entityMove, GetComponent<FlockingManager>(), this, los,
             alertedLos, alertedLosAngle, _audioSource, _backgroundMusic);
 
         idle.AddTransition(StateEnum.Attack, attack);

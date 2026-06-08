@@ -17,7 +17,12 @@ public class LootRandom : MonoBehaviour
     private float _averageTime = 90f;
     private float _timeElapsed;             
     private bool _timerActive = false;      
-    private PlayerInventory _inventory;    
+    private PlayerInventory _inventory;
+    private GameManager _gameManager;
+
+    private float _currentCommonWeight;
+    private float _currentRareWeight;
+    private float _currentSuperWeight;
 
     private void Awake()
     {
@@ -27,10 +32,15 @@ public class LootRandom : MonoBehaviour
             { RarirtyEnum.R, 5f },  
             { RarirtyEnum.SR, 1f }  
         };
-
+        
         _items = new Dictionary<RarirtyEnum, float>(_baseWeights);
         _inventory = FindObjectOfType<PlayerInventory>();  
         ResetWeights();
+    }
+
+    private void Start()
+    {
+        _gameManager = GameManager.Instance;
     }
 
     private void Update()
@@ -83,11 +93,15 @@ public class LootRandom : MonoBehaviour
         GameObject spawnedItem = Instantiate(selectedItem, spawnPoint.position, Quaternion.identity);
 
         LootableItem lootable = spawnedItem.GetComponent<LootableItem>();
+
+        int itemValue = 0;
         if (lootable != null)
         {
-            int itemValue = infos.Find(info => info.type == rarity).value;
+            itemValue = infos.Find(info => info.type == rarity).value;
             lootable.SetItemValue(itemValue);
         }
+        
+        _gameManager.Looted(_currentCommonWeight, _currentRareWeight, _currentSuperWeight, _timeElapsed, itemValue);
 
         return spawnedItem;
     }
@@ -102,15 +116,19 @@ public class LootRandom : MonoBehaviour
 
             if (rarity == RarirtyEnum.SR)//speedFactor = 0.5
             {
-                _items[rarity] = Mathf.Lerp(baseWeight * 0.5f, baseWeight * 10f, speedFactor); //100
+                _currentCommonWeight = Mathf.Lerp(baseWeight * 0.5f, baseWeight * 10f, speedFactor); //100
+                _items[rarity] = _currentCommonWeight; 
             }
             else if (rarity == RarirtyEnum.R)
             {
-                _items[rarity] = Mathf.Lerp(baseWeight * 0.75f, baseWeight * 2f, speedFactor);//50
+                _currentRareWeight= Mathf.Lerp(baseWeight * 0.75f, baseWeight * 2f, speedFactor); //50
+                _items[rarity] = _currentRareWeight;
+
             }
             else if (rarity == RarirtyEnum.C)
             {
-                _items[rarity] = Mathf.Lerp(baseWeight * 2f, baseWeight * 0.1f, speedFactor);//25
+                _currentSuperWeight = Mathf.Lerp(baseWeight * 2f, baseWeight * 0.1f, speedFactor); //25
+                _items[rarity] = _currentSuperWeight;
             }
         }
     }

@@ -9,7 +9,7 @@ public class RoundEnded : Unity.Services.Analytics.Event
         
     }
 
-    public string PlayerPositions {set {SetParameter("Player_positions", value);}}
+    //public string PlayerPositions {set {SetParameter("Player_positions", value);}}
     //public string PosWhenDetected {set {SetParameter("Pos_when_detected", value);}}
     //public string PosWhenEscaped {set {SetParameter("Pos_when_escaped", value);}}
     //public string QualityLooted {set {SetParameter("Quality_looted", value);}}
