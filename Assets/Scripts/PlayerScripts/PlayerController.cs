@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     FSM<StateEnum> _fsm;
     public Transform _cameraTransform;
     private float _timeSincePosUpdate;
-    private float _updateTimer = 5f;
+    private float _updateTimer = 15f;
     GameManager _gameManager;
     
 

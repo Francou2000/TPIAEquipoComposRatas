@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
             Difficulty = _difficulty,
         };
         Debug.Log("Moving player position recorded");
-        //AnalyticsService.Instance.RecordEvent(playerMoving);
+        AnalyticsService.Instance.RecordEvent(playerMoving);
     }
 
     public void Looted(float Common, float Rare, float Super, float Time, int value)
