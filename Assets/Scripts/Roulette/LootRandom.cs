@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using UnityEngine;
 using TMPro; 
 
@@ -110,7 +111,7 @@ public class LootRandom : MonoBehaviour
     {
         float speedFactor = Mathf.Clamp(_averageTime / timeTaken, 0.1f, 2f);
 
-        foreach (var rarity in _items.Keys)
+        foreach (var rarity in _items.Keys.ToList())
         {
             float baseWeight = _baseWeights[rarity];
 

@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     FSM<StateEnum> _fsm;
     public Transform _cameraTransform;
     private float _timeSincePosUpdate;
-    private float _updateTimer = 15f;
+    private float _updateTimer = 5f;
     GameManager _gameManager;
     
 
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             _timeSincePosUpdate = 0f;
-            _gameManager.UpdatePosition(transform.position.x, transform.position.y);
+            _gameManager.UpdatePosition(transform.position.x, transform.position.z);
         }
     }
 

@@ -12,9 +12,9 @@ public class GameManager : MonoBehaviour
     private string _difficulty;
 
     private float _latestDetectedPosX;
-    private float _latestDetectedPosY;
+    private float _latestDetectedPosZ;
     private float _latestEscapedPosX;
-    private float _latestEscapedPosY;
+    private float _latestEscapedPosZ;
     private bool _isDetected = false;
     private float _timeDetected;
     private int _timesDetected;
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
@@ -37,10 +37,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (DifficultyManager.Instance)
+        /*if (DifficultyManager.Instance)
         {
             DifficultyManager.Instance.ApplyDifficulty();
-        }
+        }*/
 
         if (DifficultyManager.Instance)
         {
@@ -60,13 +60,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void UpdateDifficulty(string difficulty)
+    {
+        _difficulty = difficulty;
+    }
+
     public void Death(float posX, float posY, string id)
     {
         _deathAmount++;
         PlayerDied playerDied = new PlayerDied
         {
             PosXWhenDetected = _latestDetectedPosX,
-            PosYWhenDetected = _latestDetectedPosY,
+            PosYWhenDetected = _latestDetectedPosZ,
             DeathPosX = posX,
             DeathPosY = posY,
             Difficulty = _difficulty,
@@ -75,7 +80,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Death event recorded");
         AnalyticsService.Instance.RecordEvent(playerDied);
         _latestDetectedPosX = 0;
-        _latestDetectedPosY = 0;
+        _latestDetectedPosZ = 0;
     }
 
     public void Victory(int interactions)
@@ -96,9 +101,9 @@ public class GameManager : MonoBehaviour
         PlayerEscaped playerEscaped = new PlayerEscaped
         {
             PosXWhenDetected = _latestDetectedPosX,
-            PosYWhenDetected = _latestDetectedPosY,
+            PosYWhenDetected = _latestDetectedPosZ,
             PosXWhenEscaped = _latestEscapedPosX,
-            PosYWhenEscaped = _latestEscapedPosY,
+            PosYWhenEscaped = _latestEscapedPosZ,
             TimeSpentEscaping = _timeDetected,
         };
         _isDetected = false;
@@ -166,7 +171,7 @@ public class GameManager : MonoBehaviour
     {
         //llamado en el switch a EnemyChaseState
         _latestDetectedPosX = x;
-        _latestDetectedPosY = y;
+        _latestDetectedPosZ = y;
         _timesDetected++;
     }
 
@@ -174,7 +179,7 @@ public class GameManager : MonoBehaviour
     {
         //llamado en la salida del EnemyChaseState
         _latestEscapedPosX = x;
-        _latestEscapedPosY = y;
+        _latestEscapedPosZ = y;
         _timesEscaped++;
         Debug.Log("Manager confirma escape");
     }

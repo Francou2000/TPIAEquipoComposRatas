@@ -41,7 +41,7 @@ public class EnemyChaseFlockingState<StateEnum> : State<StateEnum>
         _audioSource.Play();
         
         GameManager.Instance.GotDetected();
-        GameManager.Instance.updateLatestDetectedPos(_target.position.x, _target.position.y);
+        GameManager.Instance.updateLatestDetectedPos(_target.position.x, _target.position.z);
         Debug.Log("State confirma detección");
 
         if (_music != null)
@@ -73,7 +73,7 @@ public class EnemyChaseFlockingState<StateEnum> : State<StateEnum>
         {
             _music.SwitchToNormalMusic();
         }
-        GameManager.Instance.updateLatestEscapedPos(_target.position.x, _target.position.y);
+        GameManager.Instance.updateLatestEscapedPos(_target.position.x, _target.position.z);
         GameManager.Instance.Escaped();
     }
     

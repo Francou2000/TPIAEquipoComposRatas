@@ -55,7 +55,7 @@ public class DifficultyManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
@@ -67,16 +67,25 @@ public class DifficultyManager : MonoBehaviour
     public void SetEasyDifficulty()
     {
         _currentDifficulty = Difficulty.easy;
+        Debug.Log("Dificultad aplicada: " + _currentDifficulty.ToString());
     }
     
     public void SetMedDifficulty()
     {
         _currentDifficulty = Difficulty.medium;
+        Debug.Log("Dificultad aplicada: " + _currentDifficulty.ToString());
     }
     
     public void SetHardDifficulty()
     {
         _currentDifficulty = Difficulty.hard;
+        Debug.Log("Dificultad aplicada: " + _currentDifficulty.ToString());
+    }
+
+    public void SetDifficulty(Difficulty difficulty)
+    {
+        _currentDifficulty = difficulty;
+        Debug.Log("Dificultad aplicada: " + _currentDifficulty.ToString());
     }
 
     public Difficulty GetDifficulty()
@@ -147,5 +156,8 @@ public class DifficultyManager : MonoBehaviour
             (_currentCommonWeight, 
             _currentRareWeight, 
             _currentSuperRareWeight);
+        
+        GameManager.Instance.UpdateDifficulty(_currentDifficulty.ToString());
+        
     }
 }

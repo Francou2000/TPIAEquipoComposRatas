@@ -90,7 +90,7 @@ public class CopModel : Entity, IAttack, IBoid
 
     private IEnumerator AttackRoutine(Collider item)
     {
-        _gameManager.Death(item.gameObject.transform.position.x, item.gameObject.transform.position.y, CopID);
+        _gameManager.Death(item.gameObject.transform.position.x, item.gameObject.transform.position.z, CopID);
         _gameManager.GameOver();
         Destroy(item.gameObject);
         yield return new WaitForSeconds(.5f);

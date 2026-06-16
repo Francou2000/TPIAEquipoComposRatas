@@ -1546,6 +1546,7 @@ GameObject:
   - component: {fileID: 455583705}
   - component: {fileID: 455583704}
   - component: {fileID: 455583703}
+  - component: {fileID: 455583706}
   m_Layer: 0
   m_Name: Hard
   m_TagString: Untagged
@@ -1618,18 +1619,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1592841477}
-        m_TargetAssemblyTypeName: DifficultyManager, Assembly-CSharp
-        m_MethodName: SetHardDifficulty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 430056566}
         m_TargetAssemblyTypeName: ScenesManagement, Assembly-CSharp
         m_MethodName: LoadScene
@@ -1680,6 +1669,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455583701}
   m_CullTransparentMesh: 1
+--- !u!114 &455583706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455583701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419476af4b00d104aa7e44b78f55ee06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _difficultyToSet: 2
 --- !u!1 &461297626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,6 +1801,7 @@ GameObject:
   - component: {fileID: 485825075}
   - component: {fileID: 485825074}
   - component: {fileID: 485825073}
+  - component: {fileID: 485825076}
   m_Layer: 0
   m_Name: Easy
   m_TagString: Untagged
@@ -1933,6 +1936,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485825071}
   m_CullTransparentMesh: 1
+--- !u!114 &485825076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485825071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419476af4b00d104aa7e44b78f55ee06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _difficultyToSet: 0
 --- !u!1 &532450101
 GameObject:
   m_ObjectHideFlags: 0
@@ -4029,6 +4045,7 @@ GameObject:
   - component: {fileID: 1090827346}
   - component: {fileID: 1090827345}
   - component: {fileID: 1090827344}
+  - component: {fileID: 1090827347}
   m_Layer: 0
   m_Name: Medium
   m_TagString: Untagged
@@ -4163,6 +4180,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090827342}
   m_CullTransparentMesh: 1
+--- !u!114 &1090827347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090827342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419476af4b00d104aa7e44b78f55ee06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _difficultyToSet: 1
 --- !u!1 &1092378508
 GameObject:
   m_ObjectHideFlags: 0
